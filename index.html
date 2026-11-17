@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Step 4e">
+<meta name="theme-color" content="#1f2a44">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Dossier Step 4e</title>
+<style>
+/* ====== RÉGLAGES PROF : modifiez le code ci-dessous dans le script (CODE_PROF) ====== */
+:root{
+  --ink:#1f2a44; --ink-2:#4a5573; --ink-3:#7c86a2;
+  --paper:#f6f4ef; --card:#ffffff; --line:#e3dfd5;
+  --accent:#ff5a36; --accent-ink:#ffffff; --accent-soft:#ffe6df;
+  --green:#1f9d6b; --green-soft:#dcf4e9;
+  --orange:#e8901c; --orange-soft:#fdf0db;
+  --red:#d6403a; --red-soft:#fbe1df;
+  --blue:#2d6cdf; --blue-soft:#e1ebfc;
+  --radius:14px; --shadow:0 1px 2px rgba(31,42,68,.06),0 4px 14px rgba(31,42,68,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--blue)}
+
+/* Header */
+.top{position:sticky;top:0;z-index:20;background:var(--ink);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 0}
+.top-row{display:flex;align-items:center;gap:12px;max-width:1100px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;font-size:19px;white-space:nowrap}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:var(--accent);display:grid;place-items:center}
+.brand small{display:block;font-weight:500;font-size:12px;opacity:.7;letter-spacing:0}
+.spacer{flex:1}
+.who{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:0;color:#fff;border-radius:999px;padding:7px 14px 7px 8px;max-width:46vw}
+.who .av{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:12px;flex:none}
+.who span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.icon-btn{background:rgba(255,255,255,.1);border:0;color:#fff;border-radius:10px;width:40px;height:40px;display:grid;place-items:center;flex:none}
+.icon-btn.on{background:var(--accent)}
+.tabs{display:flex;gap:4px;overflow-x:auto;max-width:1100px;margin:10px auto 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;background:none;border:0;color:rgba(255,255,255,.7);padding:10px 14px 12px;font-weight:600;font-size:15px;border-bottom:3px solid transparent;white-space:nowrap}
+.tab[aria-selected=true]{color:#fff;border-bottom-color:var(--accent)}
+.prof-banner{display:none;background:var(--accent);color:#fff;text-align:center;font-weight:700;font-size:14px;padding:6px}
+body.prof .prof-banner{display:block}
+
+main{max-width:1100px;margin:0 auto;padding:20px 16px 80px}
+.section{display:none}
+.section.active{display:block}
+h2{font-size:26px;margin:4px 0 6px;letter-spacing:-.3px}
+h3{font-size:18px;margin:22px 0 10px}
+.lead{color:var(--ink-2);margin:0 0 18px;max-width:70ch}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+label.f{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:5px}
+.inp{width:100%;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:11px 12px;min-height:46px;outline:none}
+.inp:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+textarea.inp{min-height:84px;resize:vertical}
+.btn{border:0;border-radius:11px;padding:11px 16px;min-height:46px;font-weight:700;background:var(--ink);color:#fff;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn.accent{background:var(--accent)}
+.btn.danger{background:var(--red)}
+.btn.sm{min-height:36px;padding:6px 12px;font-size:14px;border-radius:9px}
+.muted{color:var(--ink-3)}
+.pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:3px 9px}
+.p-green{background:var(--green-soft);color:var(--green)}
+.p-orange{background:var(--orange-soft);color:#a45f00}
+.p-red{background:var(--red-soft);color:var(--red)}
+.p-blue{background:var(--blue-soft);color:var(--blue)}
+.p-gray{background:#eeece6;color:var(--ink-2)}
+
+/* Dashboard */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+.stat{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px}
+.stat b{display:block;font-size:28px;letter-spacing:-.5px}
+.stat span{font-size:13px;color:var(--ink-2)}
+.bar{height:8px;border-radius:99px;background:#eeece6;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.objectives li{margin:6px 0}
+
+/* Safety */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.rule{display:flex;gap:12px;align-items:flex-start;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px}
+.rule .ico{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:800}
+.rule.no .ico{background:var(--red-soft);color:var(--red)}
+.rule.yes .ico{background:var(--green-soft);color:var(--green)}
+table.t{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;font-size:15px}
+table.t th,table.t td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+table.t th{background:#f0ede6;font-size:13px;color:var(--ink-2);font-weight:700}
+table.t tr:last-child td{border-bottom:0}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius)}
+
+/* Pas */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.toolbar .inp{max-width:280px}
+.chipf{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px}
+.chipf[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pas-card h4{margin:0 0 6px;font-size:17px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.pas-card p{margin:6px 0;font-size:15px}
+.pas-card .crit{color:var(--green);font-weight:600;font-size:14px}
+.pas-card{display:flex;flex-direction:column}
+.pas-card .pas-eval{margin-top:auto;display:flex;width:100%}
+.pas-card .pas-eval button{flex:1;min-width:0;padding:8px 2px;font-size:14px}
+.pas-card > .pill{align-self:flex-start}
+.phrases4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.phrases4 .phrase-card{padding:12px;min-width:0}
+.phrases4 .phrase-card h4{font-size:15px;flex-wrap:wrap;gap:4px}
+.phrases4 .count{font-size:11px;padding:3px 7px}
+.phrases4 .timeline{gap:2px}
+.phrases4 .timeline div{height:24px;font-size:10px;border-radius:4px}
+.phrases4 .chip{font-size:12px;padding:4px 4px 4px 7px}
+.phrases4 .chip button{width:22px;height:22px;flex:none}
+.phrases4 .chip{max-width:100%}
+.phrases4 .chip .chip-name{width:auto;height:auto;flex:1;min-width:0;text-align:left;line-height:1.25}
+.phrases4 .add-row{flex-direction:column}
+.phrases4 .add-row .btn{width:100%}
+.phrases4 .inp{font-size:14px;padding:8px 9px;min-height:40px}
+.phrases4 label.f{font-size:12px}
+.phrases4 .video-box .btn{font-size:12px;padding:6px 8px}
+.seg.yn{display:flex}
+.xchk{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;margin-top:8px;font-weight:600}
+.xchk input{width:22px;height:22px;accent-color:var(--accent)}
+.icon-btn[hidden]{display:none}
+.grp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.grp-card{background:var(--card);border:1px solid rgba(31,42,68,.08);border-radius:16px;padding:14px;text-align:left;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(31,42,68,.04),0 8px 24px rgba(31,42,68,.05);transition:transform .15s,box-shadow .15s}
+.grp-card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(31,42,68,.1)}
+.grp-card.cur{border:2px solid var(--accent)}
+.grp-top{display:flex;gap:10px;align-items:center}
+.grp-top .av{width:42px;height:42px;border-radius:12px;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:900;flex:none}
+.grp-top b{display:block;font-size:17px} .grp-top small{color:var(--ink-3)}
+.grp-el{display:flex;flex-wrap:wrap;gap:6px}
+.grp-el span{background:#f0ede6;border-radius:8px;padding:4px 8px;font-size:13px}
+.grp-el b{color:var(--green)}
+.grp-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center}
+.grp-stats small{display:block;font-size:11px;color:var(--ink-3);font-weight:700;margin-bottom:3px}
+.grp-stats .bb-val{font-size:12px;padding:2px 6px}
+.obs-row{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:stretch;padding:8px 0;border-bottom:1px solid var(--line)}
+.obs-row:last-of-type{border-bottom:0}
+.obs-lab{font-weight:800;font-size:14px;display:flex;align-items:center}
+.obs-opts{display:grid;gap:6px}
+.obs-opt{border:2px solid transparent;border-radius:10px;padding:8px;font-size:13px;line-height:1.3;color:var(--ink);min-height:48px}
+.obs-opt.lv1{background:var(--red-soft)} .obs-opt.lv2{background:var(--orange-soft)} .obs-opt.lv3{background:var(--blue-soft)} .obs-opt.lv4{background:var(--green-soft)}
+.obs-opt[aria-pressed=true]{border-color:var(--ink);font-weight:800;box-shadow:0 2px 8px rgba(31,42,68,.18)}
+@media (max-width:700px){.obs-row{grid-template-columns:1fr}.obs-opts{grid-template-columns:1fr 1fr!important}}
+.ev-card{margin-bottom:14px}
+.ev-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}
+.ev-head small{display:block;color:var(--ink-3);font-size:13px;margin-top:2px}
+.ev-levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ev-lvl{border:2px solid transparent;border-radius:12px;padding:10px;text-align:left;display:flex;flex-direction:column;gap:6px;font-size:13.5px;line-height:1.35;color:var(--ink)}
+.ev-lvl-t{font-weight:800;font-size:12.5px}
+.ev-lvl.lv1{background:var(--red-soft)} .ev-lvl.lv2{background:var(--orange-soft)} .ev-lvl.lv3{background:var(--blue-soft)} .ev-lvl.lv4{background:var(--green-soft)}
+.ev-lvl[aria-pressed=true]{border-color:var(--ink);box-shadow:0 2px 8px rgba(31,42,68,.18)}
+.ev-mark{font-weight:800;font-size:12px;color:var(--ink)}
+.ev-prof{margin-top:12px;border-top:1px solid var(--line);padding-top:8px}
+.ev-prof-h{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-3);margin-bottom:4px}
+.ev-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 0}
+.ev-row .seg button{min-width:44px}
+.seg button[aria-pressed=true].lb1{background:var(--red);color:#fff} .seg button[aria-pressed=true].lb2{background:var(--orange);color:#fff}
+.seg button[aria-pressed=true].lb3{background:var(--blue);color:#fff} .seg button[aria-pressed=true].lb4{background:var(--green);color:#fff}
+.ev-sum th,.ev-sum td{text-align:center} .ev-sum th:first-child,.ev-sum td:first-child{text-align:left}
+.ev-dot{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;font-weight:800;color:#fff}
+.ev-dot.lv1{background:var(--red)} .ev-dot.lv2{background:var(--orange)} .ev-dot.lv3{background:var(--blue)} .ev-dot.lv4{background:var(--green)}
+@media (max-width:700px){.ev-levels{grid-template-columns:1fr 1fr}}
+@media (max-width:440px){.ev-levels{grid-template-columns:1fr}}
+.bb-msg{padding:10px 12px;border-radius:10px;font-weight:700;margin-bottom:10px}
+.bb-msg.ok{background:var(--green-soft);color:var(--green)}
+.bb-msg.no{background:var(--orange-soft);color:#8a5200}
+.bb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 24px}
+.bb-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);gap:10px}
+.bb-val{font-weight:800;font-variant-numeric:tabular-nums;border-radius:999px;padding:2px 10px;background:#f0ede6}
+.bb-val.ok{background:var(--green-soft);color:var(--green)}
+.bb-val.mid{background:var(--blue-soft);color:var(--blue)}
+.bb-val.no{background:#f0ede6;color:var(--ink-3)}
+.form-tog{width:100%;margin-top:8px;font-size:13px}
+.form-tog[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+.seg.yn button{flex:1}
+@media (max-width:760px){.phrases4{grid-template-columns:repeat(4,220px);overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}}
+@media print{.phrases4{grid-template-columns:repeat(4,minmax(0,1fr))!important;overflow:visible}}
+.pas-card .add-crea{margin:8px 0 0;width:100%}
+.addto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.addto{flex-direction:column;gap:2px;padding:8px 4px}
+.addto small{font-size:12px;color:var(--ink-3)}
+.addto small.ok{color:var(--green)} .addto small.high{color:var(--red)}
+.chip .chip-name{width:auto;height:auto;background:none;border-radius:0;color:#fff;font:inherit;font-weight:700;padding:0;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:440px){.addto-grid{grid-template-columns:repeat(2,1fr)}}
+.eleve-row{display:grid;grid-template-columns:28px 1fr 1fr auto;gap:8px;align-items:center}
+.eleve-n{width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.pas-card .schema{margin-bottom:12px}
+
+/* Mes pas */
+.eval-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.eval-row:last-child{border-bottom:0}
+.eval-name{flex:1;min-width:0}
+.eval-name b{display:block}
+.eval-name small{color:var(--ink-3)}
+.seg{display:inline-flex;background:#f0ede6;border-radius:11px;padding:3px;gap:2px;flex:none}
+.seg button{border:0;background:none;border-radius:9px;padding:8px 11px;font-size:13px;font-weight:700;color:var(--ink-2);min-height:38px}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.seg button[aria-pressed=true].l1{background:var(--orange);color:#fff}
+.seg button[aria-pressed=true].l2{background:var(--blue);color:#fff}
+.seg button[aria-pressed=true].l3{background:var(--green);color:#fff}
+.seg button[aria-pressed=true].na{background:var(--red);color:#fff}
+.seg button[aria-pressed=true].ec{background:var(--orange);color:#fff}
+.seg button[aria-pressed=true].a{background:var(--blue);color:#fff}
+.seg button[aria-pressed=true].d{background:var(--green);color:#fff}
+.seg button:disabled{opacity:.55;cursor:not-allowed}
+.fam-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#f0ede6;font-weight:800;font-size:14px}
+.vid-link{font-size:13px;font-weight:700;text-decoration:none;background:var(--blue-soft);color:var(--blue);padding:8px 12px;border-radius:8px;white-space:nowrap;border:0;display:inline-flex;align-items:center;gap:5px;min-height:36px;position:relative}
+.vid-link.off{background:var(--green-soft);color:var(--green)}
+.offdot{font-size:10px}
+.schema{display:block;width:100%;max-width:300px;height:auto;margin:10px auto 4px}
+.schema.big{max-width:460px}
+.schema text{font-family:inherit}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink-2);margin:10px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+.legend i.hatch{background:repeating-linear-gradient(45deg,var(--ink-3) 0 2px,#fff 2px 5px);border:1.5px solid var(--ink-3)}
+.phr-btn{border:0;background:var(--blue-soft);color:var(--ink);border-radius:8px;padding:6px 10px;font-size:14px;font-weight:600}
+.phr-btn span{background:none;padding:0;font-size:12px}
+.phr-btn em{font-style:normal;color:var(--ink-3);font-weight:700;margin-right:4px}
+.vid-progress{margin-top:10px}
+.vid-progress .bar{height:10px}
+
+/* Blocs */
+.levels{display:grid;gap:12px}
+.level{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:start}
+.lvl-badge{width:64px;height:64px;border-radius:16px;background:#eeece6;display:grid;place-items:center;font-weight:900;font-size:22px;color:var(--ink-2)}
+.level.done .lvl-badge{background:var(--green);color:#fff}
+.level.ready .lvl-badge{background:var(--orange);color:#fff}
+.phr{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.phr span{background:#f0ede6;border-radius:8px;padding:6px 10px;font-size:14px;font-weight:600}
+.phr span em{font-style:normal;color:var(--ink-3);font-weight:700;margin-right:4px}
+.lvl-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lvl-actions .inp{width:auto;min-height:40px;padding:6px 10px}
+.tog{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font-weight:700;font-size:14px;min-height:40px}
+.tog[aria-pressed=true]{background:var(--orange);border-color:var(--orange);color:#fff}
+.tog.prof[aria-pressed=true]{background:var(--green);border-color:var(--green)}
+
+/* Création */
+.subtabs{display:inline-flex;background:#e8e4da;border-radius:12px;padding:4px;margin-bottom:14px}
+.subtabs button{border:0;background:none;padding:9px 18px;border-radius:9px;font-weight:700}
+.subtabs button[aria-selected=true]{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.phrase-card h4{margin:0;display:flex;justify-content:space-between;align-items:center}
+.count{font-size:13px;font-weight:800;border-radius:999px;padding:4px 10px}
+.count.ok{background:var(--green-soft);color:var(--green)}
+.count.low{background:var(--orange-soft);color:#a45f00}
+.count.high{background:var(--red-soft);color:var(--red)}
+.timeline{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin:12px 0 6px}
+.timeline div{height:30px;border-radius:6px;background:#f0ede6;font-size:11px;font-weight:800;color:var(--ink-3);display:grid;place-items:center;overflow:hidden;white-space:nowrap;padding:0 2px}
+.timeline div.f{color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:9px;padding:6px 6px 6px 10px;font-size:14px;font-weight:700;color:#fff}
+.chip button{border:0;background:rgba(255,255,255,.25);color:#fff;border-radius:6px;width:26px;height:26px;font-weight:900;line-height:1}
+.add-row{display:flex;gap:8px}
+.add-row select{flex:1}
+.video-box{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.video-box video{width:100%;max-height:260px;border-radius:10px;background:#000}
+.file-btn{position:relative;overflow:hidden}
+.file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.proc{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-bottom:1px solid var(--line)}
+.proc:last-child{border-bottom:0}
+.check{width:28px;height:28px;flex:none;border-radius:8px;border:2px solid var(--line);background:#fff;display:grid;place-items:center;color:#fff;font-weight:900}
+.check[aria-pressed=true]{background:var(--green);border-color:var(--green)}
+.proc .body{flex:1}
+.proc .body b{display:block}
+.proc .body small{color:var(--ink-2)}
+.proc .inp{margin-top:8px;min-height:40px}
+
+/* Séances */
+.sess{display:grid;gap:10px}
+.sess .card{display:grid;grid-template-columns:52px 1fr;gap:12px}
+.sess-n{width:52px;height:52px;border-radius:14px;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:900;font-size:20px}
+.sess-fields{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.range-wrap{display:flex;align-items:center;gap:10px}
+.range-wrap input{flex:1;accent-color:var(--accent)}
+.range-wrap b{width:34px;text-align:center;font-size:18px}
+
+/* Bilan */
+.crit-row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
+.crit-row:last-child{border-bottom:0}
+.crit-row .lbl small{display:block;color:var(--ink-3);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.colhead{font-size:12px;font-weight:800;color:var(--ink-3);text-transform:uppercase;letter-spacing:.4px;text-align:center}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(20,26,44,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:18px;max-width:480px;width:100%;padding:20px;max-height:88vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal h3{margin:0 0 12px}
+.modal .row{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.prof-list{display:grid;gap:8px;margin:12px 0}
+.prof-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:#fff;text-align:left;width:100%}
+.prof-item.cur{border-color:var(--accent);background:var(--accent-soft)}
+.prof-item .av{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.prof-item span{flex:1}
+.prof-item small{display:block;color:var(--ink-3)}
+.menu-list{display:grid;gap:8px}
+.menu-list .btn{justify-content:flex-start}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;z-index:200;transition:transform .25s;max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.print-only{display:none}
+
+@media (max-width:600px){
+  .brand small{display:none}
+  .top-row{gap:8px}
+  .brand{font-size:17px}
+  .who{max-width:34vw;padding-right:10px}
+}
+@media (max-width:440px){
+  .brand > div:last-child{display:none}
+  .who{max-width:none;flex:1;min-width:0}
+  .level{grid-template-columns:48px 1fr}
+  .lvl-badge{width:48px;height:48px;font-size:18px;border-radius:12px}
+  .eval-row{flex-wrap:wrap}
+  .eval-row .seg{width:100%}
+  .eval-row .seg button{flex:1}
+  .crit-row{grid-template-columns:1fr}
+  .colhead-row{display:none}
+  .sess .card{grid-template-columns:1fr}
+  .timeline div{font-size:9px}
+}
+
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff;font-size:11pt}
+  .top,.toolbar,.no-print,.video-box,.add-row,.subtabs,.toast,.modal-bg{display:none!important}
+  main{padding:0;max-width:none}
+  .section{display:block!important;break-before:page}
+  .section:first-of-type{break-before:auto}
+  .card,.stat,.rule,table.t{box-shadow:none;border:1px solid #ccc}
+  .subpanel{display:block!important}
+  .print-only{display:block}
+  .inp{border:1px solid #bbb}
+  .level,.card,.proc,.crit-row,.eval-row{break-inside:avoid}
+}
+/* ===== Habillage visuel ===== */
+body{background:#f3f1eb radial-gradient(circle at 15% 0%,#fbfaf6 0,transparent 55%) fixed}
+.top{background:linear-gradient(135deg,#1b2540 0%,#24345a 100%);box-shadow:0 6px 20px rgba(20,28,50,.18)}
+.brand-mark{box-shadow:0 4px 12px rgba(255,90,54,.45)}
+.tabs{gap:2px}
+.tab{display:inline-flex;align-items:center;gap:7px;border-radius:10px 10px 0 0;padding:10px 13px 12px;transition:color .15s,background .15s}
+.tab svg{width:17px;height:17px;flex:none;opacity:.75}
+.tab:hover{color:#fff;background:rgba(255,255,255,.06)}
+.tab[aria-selected=true]{background:rgba(255,255,255,.1);border-bottom-width:3px}
+.tab[aria-selected=true] svg{opacity:1}
+.tab.grp-start{margin-left:10px;position:relative}
+.tab.grp-start::before{content:"";position:absolute;left:-6px;top:12px;bottom:14px;width:1px;background:rgba(255,255,255,.18)}
+main{padding-top:24px}
+.sec-head{display:flex;gap:18px;align-items:center;padding:22px 24px;border-radius:20px;margin:0 0 22px;position:relative;overflow:hidden;border:1px solid rgba(31,42,68,.05)}
+.sec-head h2{margin:0;font-size:30px;font-weight:850;letter-spacing:-.5px;text-wrap:balance}
+.sec-head .lead{margin:6px 0 0;max-width:62ch;position:relative}
+.sec-head > div:nth-child(2){position:relative;z-index:1;min-width:0}
+.sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:2px}
+.sec-ico{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;color:#fff;flex:none;position:relative;z-index:1}
+.sec-ico svg{width:30px;height:30px}
+.sec-deco{position:absolute;right:18px;top:50%;transform:translateY(-50%);width:200px;opacity:.55;pointer-events:none;color:var(--ink)}
+@media (min-width:900px){.sec-head{padding-right:240px}}
+@media (max-width:899px){.sec-deco{display:none}}
+.theme-learn{background:linear-gradient(120deg,#e3ecfd 0%,#f4f8ff 70%)} .theme-learn .sec-ico{background:var(--blue);box-shadow:0 6px 16px rgba(45,108,223,.35)} .theme-learn .sec-eyebrow{color:var(--blue)}
+.theme-do{background:linear-gradient(120deg,#ffe4dc 0%,#fff5f1 70%)} .theme-do .sec-ico{background:var(--accent);box-shadow:0 6px 16px rgba(255,90,54,.35)} .theme-do .sec-eyebrow{color:#c8401f}
+.theme-eval{background:linear-gradient(120deg,#d9f3e7 0%,#f1fbf6 70%)} .theme-eval .sec-ico{background:var(--green);box-shadow:0 6px 16px rgba(31,157,107,.35)} .theme-eval .sec-eyebrow{color:var(--green)}
+.card,.stat,.rule,table.t{border:1px solid rgba(31,42,68,.06);box-shadow:0 1px 2px rgba(31,42,68,.04),0 8px 24px rgba(31,42,68,.05)}
+.card{border-radius:16px}
+.section > h3{display:flex;align-items:center;gap:10px;font-size:19px;margin:28px 0 12px}
+.section > h3::before{content:"";width:5px;height:20px;border-radius:3px;background:var(--accent);flex:none}
+.stat{position:relative;overflow:hidden;padding-top:18px}
+.stat::before{content:"";position:absolute;left:0;right:0;top:0;height:4px}
+.stat:nth-child(1)::before{background:var(--blue)} .stat:nth-child(2)::before{background:var(--accent)} .stat:nth-child(3)::before{background:var(--green)}
+.stat:nth-child(1) .bar i{background:var(--blue)} .stat:nth-child(3) .bar i{background:var(--green)}
+.btn{box-shadow:0 1px 2px rgba(31,42,68,.12)}
+.btn.ghost{box-shadow:none}
+.btn:active,.tog:active,.seg button:active,.ev-lvl:active,.obs-opt:active{transform:translateY(1px)}
+.subtabs{background:#e6e2d8}
+.pas-card{transition:transform .15s,box-shadow .15s}
+.pas-card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(31,42,68,.05),0 14px 30px rgba(31,42,68,.09)}
+.level{transition:box-shadow .15s}
+.lvl-badge{box-shadow:inset 0 -3px 0 rgba(0,0,0,.08)}
+.modal{border-radius:22px}
+@media (max-width:600px){.sec-head{padding:16px;gap:12px;border-radius:16px}.sec-head h2{font-size:23px}.sec-ico{width:44px;height:44px;border-radius:13px}.sec-ico svg{width:24px;height:24px}.sec-deco{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{.sec-deco{display:none}.top{box-shadow:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-row">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="13" width="20" height="5" rx="1.5" fill="#fff"/><rect x="4" y="18" width="3" height="3" rx="1" fill="#fff"/><rect x="17" y="18" width="3" height="3" rx="1" fill="#fff"/><path d="M8 10l3-5 3 4 3-3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>Dossier Step<small>EPS · 4ème · CA3</small></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="prevG" hidden aria-label="Groupe précédent" title="Groupe précédent"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="who" id="whoBtn" aria-label="Changer de groupe"><span class="av" id="whoAv">?</span><span id="whoName">Groupe</span></button>
+    <button class="icon-btn" id="nextG" hidden aria-label="Groupe suivant" title="Groupe suivant"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button class="icon-btn" id="profBtn" aria-label="Mode professeur" title="Mode professeur">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    </button>
+    <button class="icon-btn" id="menuBtn" aria-label="Menu" title="Sauvegarder, charger, imprimer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+</header>
+<div class="prof-banner">Mode professeur activé — les validations sont modifiables</div>
+
+<main id="main">
+  <section class="section" id="s-classe"></section>
+  <section class="section" id="s-dossier"></section>
+  <section class="section" id="s-securite"></section>
+  <section class="section" id="s-pas"></section>
+  <section class="section" id="s-bloc1"></section>
+  <section class="section" id="s-bloc2"></section>
+  <section class="section" id="s-creation"></section>
+  <section class="section" id="s-preobs"></section>
+  <section class="section" id="s-obs"></section>
+  <section class="section" id="s-bilan"></section>
+  <section class="section" id="s-eval"></section>
+</main>
+
+<div class="modal-bg" id="modalBg"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   RÉGLAGE PROFESSEUR — code pour valider les niveaux et le bilan
+   ========================================================= */
+const CODE_PROF = "stepEPS4";
+
+/* ================= DONNÉES ================= */
+const PADLET = "https://padlet.com/epsnm/step-azfm0eyg2ca9/wish/";
+
+/* =========================================================
+   VIDÉOS DES PAS HORS CONNEXION
+   Déposez les vidéos dans le dossier « videos/ » à côté de ce fichier,
+   avec exactement ces noms (ex. videos/basique.mp4).
+   Pour un pas sans vidéo padlet, le nom est son nom simplifié
+   (ex. videos/cheval-genou.mp4). Format conseillé : .mp4 (H.264).
+   ========================================================= */
+const VIDEO_DIR = "videos/";
+const VIDEO_EXT = ".mp4";
+const VIDEO_NAMES = {
+  NvylWE9M82mdW0OX:"basique", E851Q09xPjpOZVAb:"v-step", lkROZP4Og0x2ZjMg:"a-step", v3w8ZwBP1MD1QN52:"jazz-square",
+  YDgnZe7dgd0bawrA:"mambo", PR3NWx2616PgQb0O:"basic-bras", mDRxWBjoRoeVWjb1:"v-step-bras", AL83Wz60106KW0Pg:"basic-leap",
+  kxodWGGLKLDjWgP7:"tap-up", mDRxWBjoRoyOWjb1:"knee-up", goElQyEX1Xk4Q3yY:"heel-up", O7A9QmPAgAEla6x3:"kick",
+  MbejW1ey6y5AWNkG:"extension", XGyBQb05g5L3WL6K:"lunge", O7A9QmPAgALJa6x3:"knee-up-bras", Xb8YaL3rgrLvWyn1:"repeater",
+  MbejW1ey6yOyWNkG:"l-step", mlNDZ3Nv0vDAQznG:"l-step-4-temps", PR3NWx2616qyQb0O:"v-turn", lkDVaKOngnDVaPp9:"over-the-top",
+  AL83Wz60102zW0Pg:"basic-turn", NvylWE9M8MRLW0OX:"across-the-top", do3MQJOMg8NlZ15w:"shuffle-tap-tap",
+  YDgnZe7dgdexawrA:"over-droit-gauche", R7dXadXbgbeDa6bl:"cheval"
+};
+function vkey(n,v){ return v ? (VIDEO_NAMES[v]||v) : slug(n); }
+
+/* =========================================================
+   SCHÉMAS DES PAS (d'après la fiche « Les différents pas en step »)
+   Repère : le step est un rectangle (x 90→250, y 70→125), l'élève
+   arrive par le bas. Chaque appui : [pied D/G, x, y, numéros, suspension?]
+   ========================================================= */
+const SCHEMAS = {
+  "Basic":[["D",195,97,"1"],["G",145,97,"2"],["D",195,165,"3"],["G",145,165,"4"]],
+  "Mambo":[["D",170,97,"1"],["G",158,163,"2·4"],["D",170,203,"3"]],
+  "V-step":[["D",232,97,"1"],["G",108,97,"2"],["D",195,165,"3"],["G",145,165,"4"]],
+  "Jazzsquare":[["D",158,97,"1"],["G",190,97,"2"],["D",195,165,"3"],["G",145,165,"4"]],
+  "Reverse":{rot:1,p:[["D",145,97,"1"],["G",195,97,"2"],["D",195,165,"3"],["G",145,165,"4"]]},
+  "A step":[["G",48,165,"",0,1],["D",76,165,"",0,1],["G",145,97,"2"],["D",177,97,"1"],["G",262,165,"4"],["D",292,165,"3"]],
+  "Basic leap":[["D",195,97,"1"],["G",145,97,"2"],["G",68,97,"1",1],["D",272,97,"2",1],["D",195,165,"3"],["G",145,165,"4"]],
+  "Across the top":[["G",30,97,"",0,1],["D",58,97,"",0,1],["G",122,97,"2"],["D",152,97,"1"],["G",254,97,"4"],["D",284,97,"3"]],
+  "Over droit/gauche":[["D",170,22,"3"],["G",170,49,"4"],["D",170,84,"1·6"],["G",170,111,"2·5"],["D",170,152,"8"],["G",170,179,"7"]],
+  "Tap up":[["D",195,97,"1"],["G",145,97,"2",1],["G",145,165,"3"],["D",195,165,"4"]],
+  "Tap down":[["D",195,97,"1"],["G",145,97,"2"],["D",195,165,"3"],["G",145,165,"4",1]],
+  "Genou (Knee up)":[["D",195,97,"1"],["G",145,97,"2",1],["G",145,165,"3"],["D",195,165,"4"]],
+  "Traverse (Over the step)":[["D",215,84,"1"],["G",215,111,"2"],["D",215,22,"3"],["G",215,49,"4"]],
+  "Mambo cha-cha-cha":[["D",170,97,"1"],["G",158,163,"2·et"],["D",158,203,"3"],["D",190,163,"4"]],
+  "Talon-fesse traverse":{rot:1,p:[["D",150,100,"1"],["G",172,124,"2",1],["G",182,38,"3"],["D",140,38,"4"]]},
+  "V-step tournant":[["D",232,97,"1"],["G",108,97,"2"],["G",108,158,"4"],["D",108,195,"3"]],
+  "Cheval":[["D",155,85,"1"],["D",185,85,"5"],["G",155,112,"2"],["G",185,112,"6"],["D",170,38,"3"],["G",170,160,"4"],["G",138,172,"8"],["D",202,172,"7"]],
+  "Lunge":[["G",145,84,"6"],["D",195,84,"4"],["G",145,111,"2"],["D",195,111,"1"],["G",145,160,"5",1],["D",195,160,"3",1],["G",145,200,"8"],["D",195,200,"7"]],
+  "Cheval-genou":[["D",155,85,"1"],["D",185,85,"6",1],["G",155,112,"2",1],["G",185,112,"5"],["D",170,38,"4"],["G",170,160,"3"],["G",138,172,"8"],["D",202,172,"7"]],
+  "L-step Jazzsquare":[["G",25,97,"3"],["D",55,97,"4",1],["G",115,97,"2",1],["D",145,97,"1·5"],["G",178,97,"6"],["G",145,165,"8"],["D",195,165,"7"]],
+  "Cheval ½ tour":[["D",155,85,"1"],["D",185,85,"5"],["G",155,112,"2"],["G",185,112,"6"],["D",140,38,"7"],["D",170,38,"3"],["G",200,38,"8"],["G",170,160,"4"]],
+  "Reverse-cheval":{rot:1,p:[["D",150,85,"1"],["G",190,85,"2"],["G",150,112,"6"],["D",190,112,"5"],["G",170,38,"4"],["G",140,170,"8"],["D",170,158,"3"],["D",200,170,"7"]]},
+  "3 genoux (Repeater)":[["D",135,97,"1"],["G",105,97,"2·4·6",1],["G",105,163,"3·5"],["G",155,170,"7"],["D",195,170,"8"]],
+  "L-step":[["G",25,97,"3"],["D",55,97,"4",1],["G",115,97,"2·6",1],["D",145,97,"1·5"],["G",145,165,"7"],["D",195,165,"8"]],
+  "Genou-twist-genou":[["G",105,97,"2·6",1],["D",137,97,"1·5"],["D",169,97,"4",1],["G",105,163,"3"],["G",155,170,"7"],["D",195,170,"8"]],
+  "L-step genou":[["G",25,97,"3"],["D",55,97,"4",1],["G",115,97,"2·6",1],["D",145,97,"1·5"],["G",145,165,"7"],["D",195,165,"8"]],
+  "L-step traverse":[["G",25,97,"3"],["D",55,97,"4",1],["G",112,97,"2",1],["D",140,97,"1"],["G",168,97,"6"],["D",196,97,"5"],["G",272,97,"8"],["D",300,97,"7"]],
+  "3 genoux ½ tour":{rot:1,p:[["D",140,97,"1"],["G",178,97,"2·4·6",1],["G",178,38,"3·5"],["G",145,165,"7"],["D",195,165,"8"]]}
+};
+// Notes affichées sous certains schémas
+const SCHEMA_NOTES = {
+  "Genou-twist-genou":"4 = twist du genou droit (le pied reste sur le step).",
+  "Mambo":"1 = on pose le pied sans monter.",
+  "Basic leap":"Hachuré = jambe tendue sur le côté pendant le saut.",
+  "Across the top":"Pointillés = position de départ, à côté du step.",
+  "Over droit/gauche":"De profil. 1 à 4 : on passe de l'autre côté ; 5 à 8 : on revient en partant du pied gauche.",
+  "A step":"Pointillés = position de départ, à gauche du step.",
+  "Mambo cha-cha-cha":"« et » = contretemps entre 2 et 3.",
+  "L-step Jazzsquare":"6 = on croise le pied gauche devant le droit."
+};
+// Pas du tableau (et des blocs) qui ont le même schéma qu'un pas du répertoire
+const SCHEMA_ALIASES = [
+  [/repeater|knee up ?(x|×) ?3|3 genoux|3 talon/i,"3 genoux (Repeater)"],
+  [/over droit/i,"Over droit/gauche"],[/across/i,"Across the top"],[/basic leap/i,"Basic leap"],
+  [/cha-?cha/i,"Mambo cha-cha-cha"],
+  [/mambo/i,"Mambo"],
+  [/jazz ?square/i,"Jazzsquare"],
+  [/v ?turn|v-?step tournant/i,"V-step tournant"],
+  [/^v[ -]?step/i,"V-step"],
+  [/reverse.?cheval/i,"Reverse-cheval"],
+  [/basic reverse|basic 360|^reverse/i,"Reverse"],
+  [/^basi(c|que)(?! (turn|leap|360))/i,"Basic"],
+  [/tap up/i,"Tap up"],[/tap down/i,"Tap down"],
+  [/l[ -]?step.*jazz/i,"L-step Jazzsquare"],[/l[ -]?step.*traverse/i,"L-step traverse"],[/l[ -]?step.*genou/i,"L-step genou"],
+  [/^l[ -]?step(?! 4)/i,"L-step"],
+  [/cheval sursaut/i,"Cheval"],[/cheval.*(½|1\/2)/i,"Cheval ½ tour"],[/cheval.?genou/i,"Cheval-genou"],[/^cheval(?! sursaut)/i,"Cheval"],
+  [/lunge/i,"Lunge"],
+  [/knee up|^genou|heel up|talon.?fesse(?! traverse)|kick|extension|jambe tendue/i,"Genou (Knee up)"],
+  [/talon.?fesse traverse/i,"Talon-fesse traverse"],
+  [/over the (top|step)|traverse/i,"Traverse (Over the step)"]
+];
+function findSchema(name){
+  if(SCHEMAS[name]) return name;
+  const n=name.trim();
+  for(const [re,k] of SCHEMA_ALIASES) if(re.test(n)) return k;
+  return null;
+}
+let svgUid=0;
+function schemaSVG(key,big){
+  const d=SCHEMAS[key]; if(!d) return "";
+  const u="s"+(++svgUid);
+  const pts=Array.isArray(d)?d:d.p, rot=!Array.isArray(d)&&d.rot;
+  const ys=pts.map(p=>p[2]), minY=Math.min(18,...ys.map(y=>y-14)), maxY=Math.max(185,...ys.map(y=>y+14));
+  const xs=pts.map(p=>p[1]), minX=Math.min(52,...pts.map(p=>p[1]-(p[6]?26:14))), maxX=Math.max(rot?310:265,...pts.map(p=>p[1]+(p[6]?26:14)));
+  const S=26, col={D:"var(--green)",G:"var(--red)"};
+  const toe=(f,x,y,dir)=>{ if(!dir) return ""; const o=S/2+2, t=7; const pts= dir==="L"?`${x-o},${y-t} ${x-o-9},${y} ${x-o},${y+t}`: dir==="R"?`${x+o},${y-t} ${x+o+9},${y} ${x+o},${y+t}`:`${x-t},${y-o} ${x},${y-o-9} ${x+t},${y-o}`; return `<polygon points="${pts}" fill="${col[f]}"/>`; };
+  const foot=([f,x,y,l,h,st,dir])=>{
+    if(st) return `<g><rect x="${x-S/2}" y="${y-S/2}" width="${S}" height="${S}" rx="4" fill="none" stroke="${col[f]}" stroke-width="2" stroke-dasharray="4 3"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="10" font-weight="800" fill="${col[f]}">${f}</text></g>`;
+    const fs=l.length>3?9.5:l.length>1?11:13;
+    return `<g><rect x="${x-S/2}" y="${y-S/2}" width="${S}" height="${S}" rx="4" fill="${h?`url(#${u}h${f})`:col[f]}" stroke="${col[f]}" stroke-width="2"/>
+      ${toe(f,x,y,dir)}<text x="${x}" y="${y+fs*0.36}" text-anchor="middle" font-size="${fs}" font-weight="800" fill="${h?"var(--ink)":"#fff"}" ${h?'paint-order="stroke" stroke="#fff" stroke-width="3"':''}>${l}</text></g>`;
+  };
+  return `<svg class="schema${big?" big":""}" viewBox="${minX} ${minY} ${maxX-minX} ${maxY-minY}" role="img" aria-label="Schéma du pas ${esc(key)}">
+    <defs>
+      <pattern id="${u}hD" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--green-soft)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--green)" stroke-width="2.4"/></pattern>
+      <pattern id="${u}hG" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--red-soft)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--red)" stroke-width="2.4"/></pattern>
+      <marker id="${u}ah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--blue)"/></marker>
+    </defs>
+    <rect x="90" y="70" width="160" height="55" rx="6" fill="#ebe7dd" stroke="var(--ink-3)" stroke-width="2"/>
+    <rect x="98" y="125" width="22" height="6" rx="2" fill="var(--ink-3)"/><rect x="220" y="125" width="22" height="6" rx="2" fill="var(--ink-3)"/>
+    <path d="M72 30 L82 44 L76 44 L76 58 L68 58 L68 44 L62 44 Z" fill="var(--ink-3)"/>
+    ${rot?`<path d="M290 80 C 312 92, 312 112, 288 122" fill="none" stroke="var(--blue)" stroke-width="4" marker-end="url(#${u}ah)"/><text x="292" y="140" text-anchor="middle" font-size="9" font-weight="800" fill="var(--blue)">tour</text>`:""}
+    ${pts.map(foot).join("")}
+  </svg>`;
+}
+const SCHEMA_LEGEND = `<div class="legend"><span><i style="background:var(--green)"></i>Pied droit</span><span><i style="background:var(--red)"></i>Pied gauche</span><span><i class="hatch"></i>Pied en l'air (genou, tape…)</span><span><b>1·5</b> = même appui aux temps 1 et 5</span><span>▲ = sens du regard, départ pied droit</span></div>`;
+function schemaBtn(n,v){
+  const k=findSchema(n);
+  if(k) return `<button class="vid-link no-print" data-schema="${esc(k)}" data-name="${esc(n)}" data-padlet="${v||""}">👣 Schéma</button>`;
+  return "";
+}
+function openSchema(k,name,padlet){
+  const r=REPERTOIRE.find(p=>p.n===k);
+  openModal(`<h3>${esc(name)}${name!==k?` <span class="muted" style="font-weight:600;font-size:15px">· schéma : ${esc(k)}</span>`:""}</h3>
+    ${schemaSVG(k,true)}
+    ${SCHEMA_NOTES[k]?`<p class="muted" style="margin:6px 0 0;font-size:14px">${SCHEMA_NOTES[k]}</p>`:""}
+    ${/sursaut/i.test(name)?`<p class="muted" style="margin:6px 0 0;font-size:14px">Mêmes appuis que le cheval, avec une impulsion (sursaut) ${/longueur/i.test(name)?"dans la longueur du step":"dans la largeur du step"}.</p>`:""}
+    ${/(gauche|droite|\bG\b|\bD\b)/.test(name)&&name!==k&&!/droit\/gauche/.test(name)?`<p class="muted" style="margin:6px 0 0;font-size:14px">Schéma dessiné pour un côté : de l'autre côté, j'inverse pied droit et pied gauche.</p>`:""}
+    ${SCHEMA_LEGEND}
+    ${r?`<p style="margin:10px 0 4px">${r.how}</p><p class="crit" style="color:var(--green);font-weight:600;margin:0">✓ ${r.crit}</p>`:""}
+    <div class="row"><button class="btn" data-close>Fermer</button></div>`);
+}
+
+const TABS = [
+  ["classe","Classe"],["dossier","Mon dossier"],["securite","Sécurité"],["pas","Les pas"],
+  ["bloc1","Bloc 1"],["bloc2","Bloc 2"],["creation","Création"],["preobs","Pré-évaluation"],["obs","Évaluation"],["bilan","Auto-évaluation"],["eval","Barème évaluation"]
+];
+
+// Répertoire (fiche « Les différents pas en step »)
+const REPERTOIRE = [
+  {n:"Basic",t:4,c:false,how:"Monte D, monte G, descend D, assemble G, face au step.",crit:"Pied entier au milieu du step, j'amortis.",v:"NvylWE9M82mdW0OX"},
+  {n:"Mambo",t:4,c:false,how:"Pose D devant sans monter, appui G, pose D derrière, appui G.",crit:"Bassin à la verticale des appuis.",v:"YDgnZe7dgd0bawrA"},
+  {n:"V-step",t:4,c:false,how:"Monte D sur le bord droit, G sur le bord gauche, redescends pieds serrés.",crit:"J'écarte en montant, je resserre en descendant.",v:"E851Q09xPjpOZVAb"},
+  {n:"Jazzsquare",t:4,c:false,how:"Monte D, croise G devant, descend D derrière, descend G.",crit:"Je croise sur le step, je décroise en descendant.",v:"v3w8ZwBP1MD1QN52"},
+  {n:"Reverse",t:4,c:false,how:"Basic en faisant un tour complet : ½ tour en montant, ½ tour en descendant.",crit:"Je finis face au step."},
+  {n:"A step",t:4,c:false,how:"Départ à gauche du step : monte D, monte G au milieu, descend D à droite du step, assemble G.",crit:"Je traverse le step dans la longueur et je finis de l'autre côté."},
+  {n:"Basic leap",t:4,c:false,how:"Monte D en tendant la jambe G sur le côté, saute sur le pied G en tendant la jambe D, descend D, assemble G.",crit:"Je saute d'un pied sur l'autre en restant au milieu du step."},
+  {n:"Across the top",t:4,c:false,how:"Départ à gauche du step, de côté : monte D, monte G, descend D à droite du step, descend G.",crit:"Je traverse le step dans la longueur sans me retourner."},
+  {n:"Tap up",t:4,c:true,how:"Monte D, tape G sur le step, descend G, assemble D.",crit:"Pied entier au milieu du step.",v:"kxodWGGLKLDjWgP7"},
+  {n:"Tap down",t:4,c:true,how:"Monte D, monte G, descend D, tape G au sol.",crit:"J'amortis en descendant."},
+  {n:"Genou (Knee up)",t:4,c:true,how:"Monte D, monte le genou G, descend G, assemble D.",crit:"Genou à hauteur de hanche.",v:"mDRxWBjoRoyOWjb1"},
+  {n:"Traverse (Over the step)",t:4,c:true,how:"De profil : monte D, pose G, descends de l'autre côté parallèle au step.",crit:"Je commence et finis parallèle au step."},
+  {n:"Mambo cha-cha-cha",t:4,c:true,how:"Mambo avec un contretemps (« 3 et 4 ») pour ramener D à côté de G.",crit:"Je change de pied directeur."},
+  {n:"Talon-fesse traverse",t:4,c:true,how:"Monte D de profil (¼ tour), talon G à la fesse, descends de l'autre côté.",crit:"¼ tour en montant, ¼ tour en descendant."},
+  {n:"V-step tournant",t:4,c:true,how:"V-step puis descends de profil par rapport au step.",crit:"Pied entier sur le step."},
+  {n:"Over droit/gauche",t:8,c:false,how:"De profil : monte D, monte G, descend D et G de l'autre côté du step ; retour en partant du pied G.",crit:"Je traverse le step dans la largeur et je reviens à ma place."},
+  {n:"Cheval",t:8,c:false,how:"De profil : monte, descends à cheval de chaque côté, remonte, redescends du même côté.",crit:"Pieds dans l'axe de la longueur du step.",v:"R7dXadXbgbeDa6bl"},
+  {n:"Lunge",t:8,c:false,how:"Monté sur le step, tape un pied derrière au sol puis l'autre, redescends.",crit:"Genou fléchi dans l'axe, je reste de face.",v:"XGyBQb05g5L3WL6K"},
+  {n:"Cheval-genou",t:8,c:false,how:"Cheval avec montée de genou à la place de la montée du 2e pied.",crit:"Pieds dans l'axe du step."},
+  {n:"L-step Jazzsquare",t:8,c:false,how:"Tap up, descends sur le côté, reviens en Jazzsquare.",crit:"Je termine face au step."},
+  {n:"Cheval ½ tour",t:8,c:false,how:"Cheval qui se termine de l'autre côté du step.",crit:"Pieds dans l'axe du step."},
+  {n:"Reverse-cheval",t:8,c:false,how:"Reverse ½ tour, cheval avec ¼ tour, remonte ¼ tour, finis face au step.",crit:"Je tourne toujours dans le même sens."},
+  {n:"3 genoux (Repeater)",t:8,c:true,how:"Monte D sur le côté gauche, 3 genoux G de suite avec pose derrière le step entre chaque.",crit:"Genou à hauteur de hanche.",v:"Xb8YaL3rgrLvWyn1"},
+  {n:"L-step",t:8,c:true,how:"Tap up, descends sur le côté, tape au sol, remonte, tap up, descends derrière.",crit:"Je reviens par le même chemin.",v:"MbejW1ey6yOyWNkG"},
+  {n:"Genou-twist-genou",t:8,c:true,how:"Genou G, pose G derrière, twist du genou D, genou G, descends.",crit:"Genou à hauteur de hanche."},
+  {n:"L-step genou",t:8,c:true,how:"L-step avec montées de genou à la place des taps.",crit:"Genoux à hauteur de hanche."},
+  {n:"L-step traverse",t:8,c:true,how:"Tap up, descends sur le côté, traverse le step dans la longueur.",crit:"Je termine de l'autre côté du step."},
+  {n:"3 genoux ½ tour",t:8,c:true,how:"3 genoux en posant la pointe de pied de l'autre côté du step, retour au départ.",crit:"Je pivote en levant le talon."}
+];
+
+const CLASSIF = [
+  ["4 temps, sans changement de pied","Basic, Mambo","V-step, Jazzsquare","Reverse (1 tour complet)","Basic en courant ; Reverse en sautant les 2 pieds sur le step"],
+  ["4 temps, avec changement de pied","Tap up, Tap down, Genou","Traverse ; Talon-fesse, kick ou jambe tendue ; Mambo cha-cha-cha","Talon-fesse ½ tour pour traverser ; V-step en tournant (¼ tour)","Traverse-chassé ; Kick ou jambe tendue en sautant"],
+  ["8 temps, sans changement de pied","Cheval, Lunge","Cheval-genou ; L-step Jazzsquare","Cheval ½ tour ; Reverse-cheval","Cheval en courant ; Cheval-genou avec impulsion ; L-step Jazzsquare avec impulsion"],
+  ["8 temps, avec changement de pied","3 genoux, L-step","3 talon-fesse ; Genou-talon-fesse-genou ; Genou-twist-genou ; L-step genou ; L-step traverse","3 genoux avec ½ tour","L-step genou avec impulsion"]
+];
+
+// Tableau des pas (auto-évaluation)
+const TABLEAU = [
+  ["Pas basique",[
+    ["Basique",1,"NvylWE9M82mdW0OX"],["V step",1,"E851Q09xPjpOZVAb"],["A step",1,"lkROZP4Og0x2ZjMg"],["Dégagé (8 temps)",1],
+    ["Jazz square",2,"v3w8ZwBP1MD1QN52"],["T step (8 temps)",2],["Mambo",2,"YDgnZe7dgd0bawrA"],["Dégagé avec main (8 temps)",2],
+    ["Basic avec les bras",2,"PR3NWx2616PgQb0O"],["V step avec les bras",2,"mDRxWBjoRoeVWjb1"],["Basic leap",2,"AL83Wz60106KW0Pg"]]],
+  ["Pas alterné (D/G)",[
+    ["Tap up",1,"kxodWGGLKLDjWgP7"],["Knee up",1,"mDRxWBjoRoyOWjb1"],["Heel up",1,"goElQyEX1Xk4Q3yY"],["Kick",1,"O7A9QmPAgAEla6x3"],
+    ["Extension",1,"MbejW1ey6y5AWNkG"],["Lunge",2,"XGyBQb05g5L3WL6K"],["Side",2],["Knee up avec les bras",2,"O7A9QmPAgALJa6x3"],
+    ["Repeater, ex. Knee up ×3 (8 temps)",2,"Xb8YaL3rgrLvWyn1"],["Twist",2],["Ciseau",2],["Charleston",2],
+    ["Tap down",1],["Mambo cha-cha-cha",2],["Genou-twist-genou",2]]],
+  ["Changement de rotation",[
+    ["L step (8 temps)",3,"MbejW1ey6yOyWNkG"],["L step 4 temps",3,"mlNDZ3Nv0vDAQznG"],["V turn",3,"PR3NWx2616qyQb0O"],
+    ["Over the top",3,"lkDVaKOngnDVaPp9"],
+    ["Reverse",3],["L-step Jazzsquare",3],["L-step genou",3],["Reverse-cheval",3],["3 genoux ½ tour",3]]],
+  ["Traversées",[
+    ["Across the top",3,"NvylWE9M8MRLW0OX"],["Over droit/gauche (8 temps)",3,"YDgnZe7dgdexawrA"],["Cheval (8 temps)",3,"R7dXadXbgbeDa6bl"],
+    ["Talon-fesse traverse",3],["Cheval-genou",3],["Cheval ½ tour",3],["L-step traverse",3]]]
+];
+const TAB_ALL = REPERTOIRE.map(p=>({id:"rep-"+slug(p.n),n:p.n}));
+
+const BLOC1 = [
+  ["Basic","Knee up (D et G)","V step","Knee up (D et G)"],
+  ["Basic","Knee up (D et G)","V step","Kick (D et G)"],
+  ["Basic","Knee up ×3 gauche","Knee up ×3 droite","V step"],
+  ["Basic","Knee up ×3 gauche","Knee up ×3 droite","Jazz square"],
+  ["Basic reverse","Knee up ×3 gauche côté","Knee up ×3 droite côté","Jazz square"],
+  ["Basic 360 (D et G)","Knee up ×3 gauche côté-avant","Knee up ×3 droite côté-avant","Jazz square"]
+];
+const BLOC2 = [
+  ["Cheval","Basic","Cheval","Basic"],
+  ["Cheval","Cheval","L step G","L step D"],
+  ["Cheval sursaut largeur","Cheval basic","L step G","L step D"],
+  ["Cheval sursaut largeur","Cheval sursaut longueur","L step G","L step D"],
+  ["Cheval sursaut largeur","Cheval sursaut longueur","L step G tap côté","L step D tap côté"]
+];
+
+// Pas proposés pour la création (avec leur durée)
+// Pas proposés pour la création = les pas de la page « Les pas »
+const PICK = REPERTOIRE.map(p=>({n:p.n,t:p.t})).sort((a,b)=>a.t-b.t||a.n.localeCompare(b.n,"fr"));
+
+const PROCEDES = [
+  ["unisson","Unisson","Tout le monde fait le même pas en même temps."],
+  ["canon","Canon","Le même pas, décalé de quelques temps d'un élève à l'autre."],
+  ["cascade","Cascade","Chacun commence l'un après l'autre, comme une vague."],
+  ["miroir","Miroir","Deux élèves face à face font le pas en symétrie."],
+  ["qr","Question-réponse","Un groupe fait une phrase, l'autre lui répond."],
+  ["formation","Changement de formation","Nous changeons de place (ligne, colonne, cercle, diagonale…)."],
+  ["step","Changement de step","Nous passons d'un step à un autre."],
+  ["bras","Bras","Nous ajoutons des mouvements de bras."],
+  ["autre","Autre","Un procédé que nous avons inventé."]
+];
+
+const CRITERES = [
+  ["Rythme","Nous suivons le rythme de la musique (départ sur le 1, sur les temps)."],
+  ["Mémoire","Nous mémorisons et enchaînons les blocs sans nous arrêter."],
+  ["Exécution","Nous réalisons les pas correctement (pied entier, amorti, genoux dans l'axe)."],
+  ["Sécurité","Nous respectons les règles de sécurité."],
+  ["Création","Notre création est originale (formations, bras, changements de step)."],
+  ["Groupe","Chacun participe activement au travail du groupe."],
+  ["Observation","Nous observons un autre groupe et le conseillons avec des critères précis."]
+];
+const NIV = [["na","NA"],["ec","EC"],["a","A"],["d","D"]];
+
+/* ===== Évaluation CA3 Step 2026 (grille du professeur) ===== */
+const EVAL_NIV = ["Maîtrise insuffisante","Maîtrise fragile","Maîtrise satisfaisante","Maîtrise dépassée"];
+const EVAL = [
+  {t:"Réaliser des pas complexes",d:"Domaine 1 : acquérir des techniques spécifiques pour améliorer son efficacité",w:20,l:[
+    "Les pas sont simples, pas d'utilisation des bras, pas d'impulsion.",
+    "Quelques pas sont complexifiés, utilisation des bras sur quelques pas (entre 1 et 4 phrases).",
+    "Les pas sont recherchés, utilisation des bras (au moins 4 phrases).",
+    "Les pas sont originaux, utilisation des bras (au moins 4 phrases)."]},
+  {t:"Réaliser une séquence de step avec rythme et amplitude",d:"Domaine 2 : répéter un geste sportif ou artistique pour le stabiliser et le rendre plus efficace",w:20,l:[
+    "Nombreux pas réalisés à contretemps, manque d'amplitude important.",
+    "Les pas simples sont dans le rythme, mais les pas complexes sont à contretemps et manquent d'amplitude.",
+    "Le rythme est tenu durant le début de la séquence. Avec la fatigue, quelques pas sont réalisés à contretemps ou manquent d'amplitude.",
+    "L'ensemble de la chorégraphie est dans le rythme de la musique, les pas sont réalisés avec une grande amplitude."]},
+  {t:"Reproduire une chorégraphie de step",d:"Domaine 2 : répéter un geste sportif ou artistique pour le stabiliser et le rendre plus efficace",w:20,l:[
+    "Aucun bloc de la chorégraphie n'est maîtrisé. Nombreuses erreurs de mémorisation.",
+    "Deux blocs sur quatre de la chorégraphie sont maîtrisés. Quelques erreurs de mémorisation.",
+    "Trois blocs sur quatre de la chorégraphie sont maîtrisés. Rares erreurs de mémorisation.",
+    "Tous les blocs de la chorégraphie sont maîtrisés. Aucune erreur de mémorisation."]},
+  {t:"Construire un enchaînement complet",d:"",w:10,l:[
+    "Présence des 4 blocs, mais l'introduction ou la conclusion ne sont pas construites.",
+    "Présence des 4 blocs, l'introduction et la conclusion restent trop succinctes.",
+    "L'enchaînement est complet. L'introduction et la conclusion sont clairement identifiées.",
+    "L'enchaînement est complet, l'introduction et la conclusion sont originales et clairement identifiées."]},
+  {t:"Construire un enchaînement en prenant en compte les avis d'autrui",d:"Domaine 3 : agir avec et pour les autres, en prenant en compte les différences",w:20,l:[
+    "Élève participant de façon inactive à la création des blocs.",
+    "Élève participant de façon irrégulière à la création des blocs.",
+    "Élève participant à la création des blocs sans être force de propositions.",
+    "Élève participant activement à la création tout en prenant en compte les avis des autres."]},
+  {t:"Réaliser une chorégraphie de step de façon sécurisée",d:"Domaine 4 : adapter l'engagement de son physique à ses possibilités pour ne pas se mettre en danger",w:10,l:[
+    "Les pas choisis ne respectent pas les consignes de sécurité (sursaut, descente du step vers l'avant, proximité des steps).",
+    "De nombreuses erreurs dans la pose de pied.",
+    "Quelques erreurs dans la pose de pied.",
+    "Aucune erreur dans la pose de pied, le pied est posé entièrement sur le step."]}
+];
+// Note indicative sur 20 : chaque critère pèse son % ; niveau 4 = 100 %, 3 = 75 %, 2 = 50 %, 1 = 25 %
+function evalNote(ev){ if(!ev) return null; let n=0; for(let c=0;c<EVAL.length;c++){ const v=ev[c]; if(!v) return null; n+=EVAL[c].w/100*v/4*20; } return Math.round(n*2)/2; }
+
+const PHR_COLORS = ["#ff5a36","#2d6cdf","#1f9d6b","#8a4fd8","#e8901c","#0f9bb0","#c2417a","#5a6b8c"];
+
+/* ================= ÉTAT & STOCKAGE ================= */
+const KEY = "step4e-dossier-v1";
+function slug(s){return s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+function uid(){return Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4)}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+function blankBloc(){return {phrases:[0,1,2,3].map(()=>({pas:[],bras:"",formation:""})),lien:""}}
+function blankProfile(groupe="",classe="",eleves=null){
+  return {
+    id:uid(), created:Date.now(),
+    ident:{groupe,classe,prof:"",eleves:(eleves&&eleves.length?eleves:[0,1,2,3].map(()=>({nom:"",prenom:""})))},
+    pas:{}, bloc1:{}, bloc2:{}, note1:"", note2:"",
+    creation:{groupe:[0,1,2,3].map(()=>({nom:"",prenom:""})), b3:blankBloc(), b4:blankBloc(), procedes:{}},
+    seances:Array.from({length:10},()=>({date:"",travail:"",niveau:"",effort:0,objectif:""})),
+    bilan:{}, pointFort:"", ameliorer:""
+  };
+}
+let store = {profiles:{}, current:null};
+let memoryOnly = false;
+function load(){
+  try{ const raw = localStorage.getItem(KEY); if(raw){ const s = JSON.parse(raw); if(s && s.profiles) store = s; } }
+  catch(e){ memoryOnly = true; }
+}
+let saveT=null;
+function save(){
+  if(P()) P().updated=Date.now();
+  clearTimeout(saveT);
+  saveT = setTimeout(()=>{ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){ if(!memoryOnly){memoryOnly=true; toast("Attention : la sauvegarde automatique ne fonctionne pas sur cet appareil. Pensez à exporter.");} } },250);
+}
+function flushSave(){ clearTimeout(saveT); try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="hidden") flushSave(); });
+window.addEventListener("pagehide",flushSave);
+function P(){ return store.profiles[store.current]; }
+function getPath(obj,path){ return path.split(".").reduce((o,k)=>o==null?undefined:o[k],obj); }
+function setPath(obj,path,val){
+  const ks = path.split("."); let o = obj;
+  for(let i=0;i<ks.length-1;i++){ if(o[ks[i]]==null) o[ks[i]] = /^\d+$/.test(ks[i+1])?[]:{}; o = o[ks[i]]; }
+  o[ks.at(-1)] = val;
+}
+
+/* ===== Vidéos (IndexedDB, restent sur l'appareil) ===== */
+let idb=null;
+function openDB(){
+  return new Promise(res=>{
+    try{
+      const r = indexedDB.open("step4e-videos",2);
+      r.onupgradeneeded = ()=>{ const d=r.result; if(!d.objectStoreNames.contains("v")) d.createObjectStore("v"); if(!d.objectStoreNames.contains("pas")) d.createObjectStore("pas"); };
+      r.onsuccess = ()=>{idb=r.result;res(idb)};
+      r.onerror = ()=>res(null);
+    }catch(e){res(null)}
+  });
+}
+function vidOp(mode,fn,store="v"){
+  return new Promise(res=>{
+    if(!idb) return res(null);
+    try{ const tx = idb.transaction(store,mode); const st = tx.objectStore(store); const rq = fn(st); rq.onsuccess=()=>res(rq.result??true); rq.onerror=()=>res(null); }
+    catch(e){res(null)}
+  });
+}
+const putVid=(k,b)=>vidOp("readwrite",s=>s.put(b,k));
+const getVid=async k=>{ const r=await vidOp("readonly",s=>s.get(k)); return r===true?null:r; };
+const delVid=k=>vidOp("readwrite",s=>s.delete(k));
+const vidURLs={};
+
+/* Vidéos des pas (stockées sur l'appareil) */
+const putPasVid=(k,b)=>vidOp("readwrite",s=>s.put(b,k),"pas");
+const getPasVid=async k=>{ const r=await vidOp("readonly",s=>s.get(k),"pas"); return r===true?null:r; };
+const clearPasVids=()=>vidOp("readwrite",s=>s.clear(),"pas");
+let offlineKeys=new Set();
+async function refreshOfflineKeys(){ const r=await vidOp("readonly",s=>s.getAllKeys(),"pas"); offlineKeys=new Set(Array.isArray(r)?r:[]); }
+// Tous les pas qui peuvent avoir une vidéo (clé unique par vidéo)
+function allVideoItems(){
+  const m=new Map();
+  REPERTOIRE.forEach(p=>{ const k=vkey(p.n,p.v); if(!m.has(k)) m.set(k,{k,n:p.n,v:p.v}); });
+  TAB_ALL.forEach(p=>{ const k=vkey(p.n,p.v); if(!m.has(k)) m.set(k,{k,n:p.n,v:p.v}); });
+  return [...m.values()];
+}
+function vidBtn(n,v){
+  const k=vkey(n,v), off=offlineKeys.has(k);
+  if(!off && !v && !profMode) return "";
+  if(!off && !v) return `<label class="vid-link no-print file-btn" style="background:#f0ede6;color:var(--ink-2)">＋ Vidéo<input type="file" accept="video/*" data-pasvidin="${k}"></label>`;
+  return `<button class="vid-link no-print ${off?"off":""}" data-playvid="${k}" data-padlet="${v||""}" data-name="${esc(n)}">▶ Vidéo${off?' <span class="offdot" title="Disponible hors connexion">●</span>':""}</button>`;
+}
+async function playVideo(k,padlet,name){
+  const blob=await getPasVid(k);
+  if(blob){
+    if(vidURLs["pas:"+k]) URL.revokeObjectURL(vidURLs["pas:"+k]);
+    const u=vidURLs["pas:"+k]=URL.createObjectURL(blob);
+    openModal(`<h3>${esc(name)}</h3><video src="${u}" controls autoplay playsinline loop style="width:100%;border-radius:12px;background:#000;max-height:60vh"></video>
+      <div class="seg" style="margin-top:10px" id="spd"><button data-r="0.5" aria-pressed="false">× 0,5</button><button data-r="0.75" aria-pressed="false">× 0,75</button><button data-r="1" aria-pressed="true">Normal</button></div>
+      ${profMode?`<p style="margin:10px 0 0"><label class="btn ghost sm file-btn">Remplacer la vidéo<input type="file" accept="video/*" data-pasvidin="${k}"></label></p>`:""}
+      <div class="row"><button class="btn" data-close>Fermer</button></div>`);
+    $("#spd").onclick=e=>{const b=e.target.closest("[data-r]"); if(!b) return; $("#modal video").playbackRate=+b.dataset.r; $("#spd").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));};
+    return;
+  }
+  openModal(`<h3>${esc(name)}</h3>
+    <p>Cette vidéo n'est pas encore enregistrée sur cet appareil.</p>
+    <p class="muted" style="font-size:14px">Pour l'avoir hors connexion : menu ☰ → « Vidéos des pas hors connexion ».</p>
+    ${profMode?`<p><label class="btn ghost sm file-btn">Ajouter la vidéo depuis l'iPad<input type="file" accept="video/*" data-pasvidin="${k}"></label></p>`:""}
+    <div class="row"><button class="btn" data-close>Fermer</button></div>`);
+}
+async function savePasVideo(k,file){
+  const r=await putPasVid(k,file);
+  if(r===null){ toast("La vidéo n'a pas pu être enregistrée (espace insuffisant ?)"); return false; }
+  offlineKeys.add(k); return true;
+}
+function rerenderVideoLists(){ if(!P()) return; renderPas(); renderMesPas(); }
+
+/* ================= UI HELPERS ================= */
+const $ = s=>document.querySelector(s);
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),2600); }
+function openModal(html){ $("#modal").innerHTML=html; $("#modalBg").classList.add("open"); const f=$("#modal").querySelector("input"); if(f) setTimeout(()=>f.focus(),50); }
+function closeModal(){ $("#modalBg").classList.remove("open"); }
+$("#modalBg").addEventListener("click",e=>{ if(e.target.id==="modalBg" && P()) closeModal(); });
+
+function inp(path,ph="",type="text",extra=""){
+  const v = getPath(P(),path) ?? "";
+  if(type==="textarea") return `<textarea class="inp" data-bind="${path}" placeholder="${esc(ph)}" ${extra}>${esc(v)}</textarea>`;
+  return `<input class="inp" type="${type}" data-bind="${path}" value="${esc(v)}" placeholder="${esc(ph)}" ${extra}>`;
+}
+function initials(p){ const g=(p.ident.groupe||"").trim(); const m=g.match(/\d+/); return m?m[0]:(g.slice(0,2).toUpperCase()||"?"); }
+function fullName(p){ return (p.ident.groupe||"").trim()||"Groupe sans nom"; }
+function membres(p){ return (p.ident.eleves||[]).map(e=>[e.prenom,e.nom].filter(Boolean).join(" ")).filter(Boolean); }
+let profMode=false;
+
+/* ================= RENDUS ================= */
+function stats(){
+  const p=P();
+  const maitrise = TAB_ALL.filter(x=>p.pas[x.id]===3).length;
+  const b1 = BLOC1.filter((_,i)=>p.bloc1["N"+(i+1)]?.prof).length;
+  const b2 = BLOC2.filter((_,i)=>p.bloc2["N"+(i+1)]?.prof).length;
+  return {maitrise,b1,b2};
+}
+function renderDossier(){
+  if(!P().ident.eleves) P().ident.eleves=[0,1,2,3].map(()=>({nom:"",prenom:""}));
+  const s=stats();
+  $("#s-dossier").innerHTML = `
+  <h2>Mon dossier</h2>
+  <p class="lead">Ce dossier est celui du groupe pendant tout le cycle step : nous validons nos niveaux sur les blocs 1 et 2, nous créons les blocs 3 et 4, nous observons et nous nous évaluons.</p>
+  <div class="card"><div class="grid g2">
+    <div><label class="f">Nom du groupe</label>${inp("ident.groupe","ex. Groupe 2")}</div>
+    <div><label class="f">Classe</label>${inp("ident.classe","ex. 4ème B")}</div>
+    <div><label class="f">Professeur d'EPS</label>${inp("ident.prof","Nom du professeur")}</div>
+  </div>
+  <h3 style="margin-top:20px">Les élèves du groupe</h3>
+  <div class="grid" style="gap:8px">${(P().ident.eleves||[]).map((_,i)=>`<div class="eleve-row"><span class="eleve-n">${i+1}</span>${inp(`ident.eleves.${i}.prenom`,"Prénom")}${inp(`ident.eleves.${i}.nom`,"Nom")}${P().ident.eleves.length>1?`<button class="btn ghost sm no-print" data-rmeleve="${i}" aria-label="Retirer cet élève">×</button>`:""}</div>`).join("")}</div>
+  ${(P().ident.eleves||[]).length<6?`<button class="btn ghost sm no-print" data-addeleve="1" style="margin-top:10px">+ Ajouter un élève</button>`:""}
+  </div>
+  <div class="stats" id="statsBox">
+    <div class="stat"><b>${s.maitrise}<span style="font-size:15px;color:var(--ink-3)"> / ${TAB_ALL.length}</span></b><span>pas maîtrisés</span><div class="bar"><i style="width:${s.maitrise/TAB_ALL.length*100}%"></i></div></div>
+    <div class="stat"><b>${s.b1?"N"+s.b1:"—"}<span style="font-size:15px;color:var(--ink-3)"> / N6</span></b><span>Bloc 1 validé</span><div class="bar"><i style="width:${s.b1/6*100}%"></i></div></div>
+    <div class="stat"><b>${s.b2?"N"+s.b2:"—"}<span style="font-size:15px;color:var(--ink-3)"> / N5</span></b><span>Bloc 2 validé</span><div class="bar"><i style="width:${s.b2/5*100}%"></i></div></div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Champ d'apprentissage 3</h3>
+    <p style="margin:0 0 8px">S'exprimer devant les autres par une prestation artistique et/ou acrobatique.</p>
+    <b>Ce que nous devons savoir faire en fin de cycle :</b>
+    <ul class="objectives">
+      <li>Réaliser un enchaînement de pas en rythme, sur les temps de la musique, en toute sécurité.</li>
+      <li>Mémoriser et enchaîner les blocs appris en cours.</li>
+      <li>Composer en groupe un bloc original (formations, bras, changements de step).</li>
+      <li>Observer et apprécier la prestation d'un autre groupe à l'aide de critères.</li>
+    </ul>
+  </div>`;
+}
+
+function renderSecurite(){
+  const rules = [
+    ["yes","✓","Je pose le pied entier au milieu du step, jamais le talon dans le vide."],
+    ["yes","✓","J'amortis en descendant, genoux fléchis et dans l'axe des pieds."],
+    ["yes","✓","Je garde le dos droit, le bassin à la verticale de mes appuis."],
+    ["no","✕","Pas de sursaut depuis l'avant ou l'arrière du step."],
+    ["no","✕","Pas de descente vers l'avant du step."],
+    ["no","✕","Pas de montée en arrière sur le step."]
+  ];
+  const voc = [
+    ["Temps","Un battement de la musique : je compte de 1 à 8."],
+    ["Phrase","Une suite de pas sur 8 temps (ou 2 × 8 temps)."],
+    ["Bloc","4 phrases enchaînées."],
+    ["Pied directeur","Le pied qui monte en premier sur le step."],
+    ["Pas sans changement de pied","Je recommence avec le même pied directeur (ex. Basic, V-step, Cheval)."],
+    ["Pas avec changement de pied","Le pied directeur change (ex. Knee up, Tap up, L-step)."],
+    ["Formation","La place des élèves et des steps dans l'espace (ligne, cercle, colonne…)."]
+  ];
+  $("#s-securite").innerHTML = `
+  <h2>Sécurité et vocabulaire</h2>
+  <p class="lead">Chaque élève du groupe respecte ces règles à chaque séance, en apprentissage comme en création.</p>
+  <div class="rules">${rules.map(([k,i,t])=>`<div class="rule ${k}"><div class="ico">${i}</div><div>${t}</div></div>`).join("")}</div>
+  <h3>Mon vocabulaire</h3>
+  <div class="scroll-x"><table class="t"><thead><tr><th style="width:32%">Mot</th><th>Ce que ça veut dire</th></tr></thead>
+  <tbody>${voc.map(([a,b])=>`<tr><td><b>${a}</b></td><td>${b}</td></tr>`).join("")}</tbody></table></div>
+  <h3>Les familles de pas</h3>
+  <p class="lead" style="margin-bottom:10px">Les pas se classent selon leur durée (4 ou 8 temps) et selon qu'ils changent ou non le pied directeur. HIA = haute intensité, avec impulsion.</p>
+  <div class="scroll-x"><table class="t" style="min-width:760px"><thead><tr><th>Type de pas</th><th>Pas de base</th><th>Variantes</th><th>En tournant</th><th>Variantes HIA</th></tr></thead>
+  <tbody>${CLASSIF.map(r=>`<tr>${r.map((c,i)=>i===0?`<td><b>${c}</b></td>`:`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+
+let pasFilter={q:"",t:"all",c:"all"};
+// Autres noms (tableau des pas) qui utilisent le même schéma
+function variantesOf(k){
+  const out=[]; TABLEAU.forEach(([f,list])=>list.forEach(([n])=>{ const nn=n.replace(/ \(8 temps\)/,""); if(findSchema(n)===k && slug(nn)!==slug(k) && !out.includes(nn) && !/^basique$/i.test(nn)) out.push(nn); }));
+  return out;
+}
+function renderPas(){
+  const btn=(k,v,l)=>`<button class="chipf" data-filter="${k}" data-val="${v}" aria-pressed="${pasFilter[k]==v}">${l}</button>`;
+  if(!$("#s-pas").querySelector("#pasList")) $("#s-pas").innerHTML = `
+  <h2>Les pas</h2>
+  <p class="lead">Départ pied droit. Sur chaque schéma, l'élève est en bas, face au step, et les numéros donnent l'ordre des appuis. En bas de chaque pas, le groupe note son niveau.</p>
+  ${SCHEMA_LEGEND}
+  <div class="card" style="margin-bottom:14px" id="pasProgress"></div>
+  <div class="toolbar no-print">
+    <input class="inp" id="pasSearch" type="search" placeholder="Chercher un pas…" value="${esc(pasFilter.q)}">
+    <span id="pasBtns"></span>
+  </div>
+  <div class="grid g3" id="pasList"></div>`;
+  const pr=P(), s=stats(), q=slug(pasFilter.q);
+  $("#pasProgress").innerHTML = `<b>${s.maitrise} pas maîtrisés sur ${TAB_ALL.length}</b><div class="bar"><i style="width:${s.maitrise/TAB_ALL.length*100}%"></i></div>`;
+  $("#pasBtns").innerHTML = btn("t","all","Tous")+" "+btn("t",4,"4 temps")+" "+btn("t",8,"8 temps")+" "+btn("c","garde","Garde le pied")+" "+btn("c","change","Change de pied")+(pasFilter.c!=="all"?" "+btn("c","all","× pied"):"");
+  const lbl=[[2,"Réalisé","l2"],[3,"Maîtrisé","l3"]];
+  const list = REPERTOIRE.filter(p=>{
+    const v=variantesOf(p.n);
+    return (!q || slug(p.n+" "+p.how+" "+v.join(" ")).includes(q)) &&
+      (pasFilter.t==="all" || p.t==+pasFilter.t) &&
+      (pasFilter.c==="all" || (pasFilter.c==="change")===p.c);
+  });
+  $("#pasList").innerHTML = list.map(p=>{ const id="rep-"+slug(p.n), cur=pr.pas[id]||0, v=variantesOf(p.n); return `
+    <div class="card pas-card">
+      <h4><span>${p.n}</span><span class="pill ${p.t===4?"p-blue":"p-orange"}">${p.t} temps</span></h4>
+      <span class="pill ${p.c?"p-red":"p-green"}">${p.c?"Change de pied":"Garde le pied"}</span>
+      <p>${p.how}</p>
+      <p class="crit">✓ ${p.crit}</p>
+      ${schemaSVG(p.n)}
+      ${SCHEMA_NOTES[p.n]?`<p class="muted" style="font-size:13px;margin:2px 0">${SCHEMA_NOTES[p.n]}</p>`:""}
+      ${v.length?`<p class="muted" style="font-size:13px;margin:4px 0">Même schéma : ${v.join(", ")}</p>`:""}
+      <div class="seg pas-eval">${lbl.map(([n,l,c])=>`<button class="${c}" data-pas="${id}" data-val="${n}" aria-pressed="${cur===n}">${l}</button>`).join("")}</div>
+      <button class="btn ghost sm no-print add-crea" data-addcrea="${esc(p.n)}">＋ Ajouter à notre création</button>
+    </div>`;}).join("") || `<p class="muted">Aucun pas ne correspond.</p>`;
+}
+function renderMesPas(){ renderPas(); }
+
+function renderBloc(n){
+  const data = n===1?BLOC1:BLOC2, p=P(), key="bloc"+n;
+  const done = data.filter((_,i)=>p[key]["N"+(i+1)]?.prof).length;
+  $("#s-"+key).innerHTML = `
+  <h2>Bloc ${n}</h2>
+  <p class="lead">${n===1?"Nous validons chaque niveau dans l'ordre, de N1 à N6 : tout le groupe doit réaliser le bloc en rythme, sans erreur et sans s'arrêter, avant de passer au suivant.":"Même principe pour le bloc 2, de N1 à N5 : le cheval et le L-step demandent de bien placer les pieds dans l'axe du step."}</p>
+  <div class="card" style="margin-bottom:14px"><b>Niveau validé : ${done?("N"+done):"aucun pour l'instant"}</b><div class="bar"><i style="width:${done/data.length*100}%"></i></div></div>
+  <div class="levels">
+  ${data.map((ph,i)=>{const L="N"+(i+1), st=p[key][L]||{}; const cls=st.prof?"done":(st.pret?"ready":""); return `
+    <div class="card level ${cls}">
+      <div class="lvl-badge">${L}</div>
+      <div>
+        <div class="phr">${ph.map((x,j)=>{const k=findSchema(x); return k?`<button class="phr-btn" data-schema="${esc(k)}" data-name="${esc(x)}"><em>${j+1}</em>${x} <span aria-hidden="true">👣</span></button>`:`<span><em>${j+1}</em>${x}</span>`}).join("")}</div>
+        <div class="lvl-actions">
+          <input class="inp" type="date" data-bind="${key}.${L}.date" value="${esc(st.date||"")}" aria-label="Date">
+          <button class="tog" data-lvl="${key}.${L}.pret" aria-pressed="${!!st.pret}">${st.pret?"✓ ":""}Nous sommes prêts</button>
+          <button class="tog prof" data-lvl="${key}.${L}.prof" data-needprof="1" aria-pressed="${!!st.prof}">${st.prof?"✓ Validé par le prof":"Validation prof"}</button>
+        </div>
+      </div>
+    </div>`}).join("")}
+  </div>
+  <h3>Ce qui nous pose problème sur le bloc ${n}</h3>
+  ${inp("note"+n,"Ex. : nous partons trop tôt sur le Knee up ×3…","textarea")}
+  ${blocObsHTML("b"+n)}`;
+}
+
+let creaTab="b3";
+function phraseHTML(bk,i){
+  const ph = P().creation[bk].phrases[i];
+  const total = ph.pas.reduce((s,x)=>s+x.t,0);
+  const cls = total===8?"ok":total>8?"high":"low";
+  const cells=[]; let k=0;
+  ph.pas.forEach((x,j)=>{ for(let t=0;t<x.t;t++){ if(k<8) cells.push({c:PHR_COLORS[j%PHR_COLORS.length],l:t===0?x.n:""}); k++; } });
+  while(cells.length<8) cells.push(null);
+  const vk = `${store.current}-${bk}-p${i+1}`;
+  return `
+  <div class="card phrase-card" data-phrase="${bk}.${i}">
+    <h4><span>Phrase ${i+1}</span><span class="count ${cls}">${total} / 8 temps${total>8?" — trop long":""}</span></h4>
+    <div class="timeline" aria-hidden="true">${cells.map((c,t)=>c?`<div class="f" style="background:${c.c}" title="${esc(c.l)}">${t+1}</div>`:`<div>${t+1}</div>`).join("")}</div>
+    <div class="chips">${ph.pas.map((x,j)=>`<span class="chip" style="background:${PHR_COLORS[j%PHR_COLORS.length]}">${findSchema(x.n)&&!x.custom?`<button class="chip-name" data-schema="${esc(findSchema(x.n))}" data-name="${esc(x.n)}">👣 ${esc(x.n)}</button>`:`${x.custom?"✏️ ":""}${esc(x.n)}`} · ${x.t}t<button class="no-print" data-rmpas="${bk}.${i}.${j}" aria-label="Retirer">×</button></span>`).join("")||`<span class="muted" style="font-size:14px">Ajoutez des pas (ici ou depuis « Les pas »).</span>`}</div>
+    <div class="add-row">
+      <select class="inp" id="sel-${bk}-${i}">
+        <optgroup label="Pas de 4 temps">${PICK.filter(p=>p.t===4).map(p=>`<option value="${esc(p.n)}|4">${esc(p.n)}</option>`).join("")}</optgroup>
+        <optgroup label="Pas de 8 temps">${PICK.filter(p=>p.t===8).map(p=>`<option value="${esc(p.n)}|8">${esc(p.n)}</option>`).join("")}</optgroup>
+        <optgroup label="Création libre"><option value="__libre">✏️ Créer notre propre pas…</option></optgroup>
+      </select>
+      <button class="btn sm" data-addpas="${bk}.${i}">Ajouter</button>
+    </div>
+    ${ph.pas.filter(x=>x.custom&&x.desc).map(x=>`<p class="muted" style="font-size:13px;margin:4px 0">✏️ <b>${esc(x.n)}</b> : ${esc(x.desc)}</p>`).join("")}
+    <div style="margin-top:10px"><label class="f">Notre phrase en mots (facultatif)</label>${inp(`creation.${bk}.phrases.${i}.texte`,"Ex. : 1-4 basic, 5-8 knee up en tournant","textarea",'style="min-height:60px"')}</div>
+    <div style="margin-top:10px"><label class="f">Bras</label>
+      <div class="seg yn"><button data-bras="${bk}.${i}" data-val="0" aria-pressed="${ph.brasOui===false}" class="na">Non</button><button data-bras="${bk}.${i}" data-val="1" aria-pressed="${ph.brasOui===true}" class="d">Oui</button></div>
+      ${ph.brasOui?`<div style="margin-top:6px">${inp(`creation.${bk}.phrases.${i}.bras`,"Quels bras ? ex. bras en V sur le V-step","textarea",'style="min-height:56px"')}</div>`:""}
+    </div>
+    <button class="tog form-tog" data-form="${bk}.${i}" aria-pressed="${!!ph.changeStep}">${ph.changeStep?"✓ ":""}Changement de step</button>
+    <button class="tog form-tog" data-inter="${bk}.${i}" aria-pressed="${!!ph.interaction}">${ph.interaction?"✓ ":""}Interaction avec un autre élève</button>
+    <button class="tog form-tog" data-hors="${bk}.${i}" aria-pressed="${!!ph.horsStep}">${ph.horsStep?"✓ ":""}Phrase hors du step</button>
+    <div class="video-box no-print" data-vid="${vk}"></div>
+  </div>`;
+}
+function blocBilanHTML(bk){
+  const ph=P().creation[bk].phrases;
+  const tot=ph.map(x=>x.pas.reduce((a,y)=>a+y.t,0));
+  const ok=tot.filter(t=>t===8).length;
+  const cnt=k=>ph.filter(x=>k==="bras"?x.brasOui===true:!!x[k]).length;
+  const pas=new Set(ph.flatMap(x=>x.pas.map(y=>y.n))), inv=ph.flatMap(x=>x.pas.filter(y=>y.custom)).length;
+  const crit=[["Bras","bras"],["Changement de step","changeStep"],["Interaction avec un autre élève","interaction"],["Phrase hors du step","horsStep"]];
+  const used=crit.filter(([,k])=>cnt(k)>0).length;
+  const dot=(n,max)=>`<span class="bb-val ${n===max?"ok":n>0?"mid":"no"}">${n} / ${max}</span>`;
+  return `
+    <div class="bb-msg ${ok===4?"ok":"no"}">${ok===4?"✓ Bloc complet : 4 phrases de 8 temps.":`Il reste à compléter : ${tot.map((t,i)=>t===8?"":`phrase ${i+1} (${t}/8 temps)`).filter(Boolean).join(", ")}.`}</div>
+    <div class="bb-grid">
+      <div class="bb-row"><span>Phrases complètes</span>${dot(ok,4)}</div>
+      ${crit.map(([l,k])=>`<div class="bb-row"><span>${l}</span>${dot(cnt(k),4)}</div>`).join("")}
+      <div class="bb-row"><span>Pas différents utilisés</span><span class="bb-val">${pas.size}</span></div>
+      <div class="bb-row"><span>Pas inventés</span><span class="bb-val">${inv}</span></div>
+    </div>
+    <p class="muted" style="margin:8px 0 0;font-size:14px">Originalité : ${used} élément${used>1?"s":""} sur 4 utilisé${used>1?"s":""} au moins une fois (bras, changement de step, interaction, hors du step).</p>`;
+}
+function updateBilan(bk){ const el=document.getElementById("bilan-"+bk); if(el) el.innerHTML=blocBilanHTML(bk); }
+function renderCreation(){
+  const c=P().creation;
+  $("#s-creation").innerHTML = `
+  <h2>Création : blocs 3 et 4</h2>
+  <p class="lead">Le groupe crée deux blocs de 4 phrases de 8 temps, puis les filme pour garder une trace.</p>
+  <div class="card" style="border-left:5px solid var(--accent)">
+    <b>Consignes</b> — Créer un bloc (4 phrases de 8 temps) en respectant les consignes de sécurité : pas de sursaut depuis l'avant ou l'arrière du step, pas de descente vers l'avant, pas de montée en arrière. L'originalité de vos phrases sera évaluée (bras, changement de step, interaction avec un autre élève, phrase hors du step).
+  </div>
+  <h3>Le groupe</h3>
+  <div class="card"><b>${esc(fullName(P()))}</b> · ${membres(P()).map(esc).join(", ")||`<span class="muted">Ajoutez les élèves dans « Mon dossier ».</span>`}</div>
+  <h3>Nos phrases</h3>
+  <div class="subtabs" role="tablist">
+    <button data-crea="b3" aria-selected="${creaTab==="b3"}">Bloc 3</button>
+    <button data-crea="b4" aria-selected="${creaTab==="b4"}">Bloc 4</button>
+  </div>
+  ${["b3","b4"].map(bk=>`
+    <div class="subpanel" data-panel="${bk}" style="display:${creaTab===bk?"block":"none"}">
+      <h3 class="print-only">Bloc ${bk[1]}</h3>
+      <div class="phrases4">${[0,1,2,3].map(i=>phraseHTML(bk,i)).join("")}</div>
+      <div class="card" style="margin-top:14px">
+        <b>Bloc ${bk[1]} complet</b>
+        <div class="video-box no-print" data-vid="${store.current}-${bk}-complet"></div>
+      </div>
+      <div class="card bloc-bilan" style="margin-top:14px">
+        <h3 style="margin-top:0">Bilan du bloc ${bk[1]}</h3>
+        <div id="bilan-${bk}">${blocBilanHTML(bk)}</div>
+        <label class="f" style="margin-top:12px">Ce que nous pensons de notre bloc</label>${inp(`creation.${bk}.avis`,"Ex. : le bloc est complet, il faut encore travailler la phrase 3 en rythme","textarea")}
+      </div>
+      ${blocObsHTML(bk)}
+    </div>`).join("")}
+`;
+  hydrateVideos();
+}
+
+async function hydrateVideos(){
+  const boxes = document.querySelectorAll(".video-box[data-vid]");
+  for(const b of boxes){
+    const k=b.dataset.vid;
+    const blob = await getVid(k);
+    if(blob){
+      if(!vidURLs[k]) vidURLs[k]=URL.createObjectURL(blob);
+      b.innerHTML = `<video src="${vidURLs[k]}" controls playsinline preload="metadata"></video>
+        <label class="btn ghost sm file-btn">Refilmer<input type="file" accept="video/*" capture="environment" data-vidin="${k}"></label>
+        <button class="btn ghost sm" data-viddel="${k}">Supprimer la vidéo</button>`;
+    }else{
+      b.innerHTML = idb ? `<label class="btn ghost sm file-btn">🎥 Filmer / ajouter une vidéo<input type="file" accept="video/*" capture="environment" data-vidin="${k}"></label>`
+        : `<span class="muted" style="font-size:13px">Vidéo impossible sur cet appareil.</span>`;
+    }
+  }
+}
+
+function renderSeances(){
+  const p=P();
+  $("#s-seances").innerHTML = `
+  <h2>Suivi des séances</h2>
+  <p class="lead">À la fin de chaque séance, le groupe note ce qu'il a travaillé et l'effort ressenti (de 1 = très facile à 10 = maximal).</p>
+  <div class="sess">${p.seances.map((s,i)=>`
+    <div class="card">
+      <div class="sess-n">${i+1}</div>
+      <div class="sess-fields">
+        <div><label class="f">Date</label>${inp(`seances.${i}.date`,"","date")}</div>
+        <div><label class="f">Niveau atteint (bloc / N)</label>${inp(`seances.${i}.niveau`,"ex. Bloc 1 – N3")}</div>
+        <div style="grid-column:1/-1"><label class="f">Ce que nous avons travaillé</label>${inp(`seances.${i}.travail`,"ex. Knee up ×3, mise en musique du bloc 1")}</div>
+        <div><label class="f">Effort ressenti</label>
+          <div class="range-wrap"><input type="range" min="0" max="10" step="1" data-bind="seances.${i}.effort" data-num="1" value="${s.effort||0}" aria-label="Effort ressenti"><b data-show="seances.${i}.effort">${s.effort||"–"}</b></div></div>
+        <div><label class="f">Notre objectif pour la prochaine séance</label>${inp(`seances.${i}.objectif`,"ex. valider N4")}</div>
+      </div>
+    </div>`).join("")}</div>`;
+}
+
+/* ===== Observation (fiche « Observation Step simplifiée ») ===== */
+const OBS_CRIT = [
+  ["orient","Orientations utilisées",["Une orientation","Deux orientations","Trois orientations","Quatre orientations"]],
+  ["step","Changement de step",["Non","Oui"]],
+  ["mem","Mémorisation individuelle",["Enchaînement non mémorisé","Nombreuses erreurs (3 ou 4 erreurs)","Rares erreurs dans les blocs (1 ou 2 erreurs)","Les quatre blocs mémorisés"]],
+  ["sync","Synchronisation collective",["Synchronisation aléatoire","Synchronisation qui se délie au cours de la prestation","Synchronisation dans la plupart des temps","Synchronisation tout au long de la séquence"]]
+];
+let obsIdx=null;
+const BOBS_MEM=["Bloc non mémorisé","Nombreuses erreurs (3 ou 4)","Rares erreurs (1 ou 2)","Bloc mémorisé"];
+function blocObsHTML(bk){
+  const p=P(); p.blocObs=p.blocObs||{}; const o=p.blocObs[bk]||{}; const n=bk.slice(1);
+  const el=(p.ident.eleves||[]).map((e,i)=>({i,nom:[e.prenom,e.nom].filter(Boolean).join(" ")})).filter(x=>x.nom);
+  const sync=OBS_CRIT.find(c=>c[0]==="sync")[2];
+  return `
+  <div class="card bobs" style="margin-top:16px;border-left:5px solid var(--blue)">
+    <h3 style="margin-top:0">Observation du bloc ${n}</h3>
+    <p class="muted" style="margin:0 0 10px;font-size:14px">Un élève d'un autre groupe observe le groupe pendant le bloc ${n} et coche ce qu'il voit.</p>
+    <label class="f">Observateur : écris ton nom et ton prénom</label>${inp(`blocObs.${bk}.observateur`,"Nom et prénom de l'observateur")}
+    <div class="obs-row" style="margin-top:8px"><div class="obs-lab">Synchronisation collective</div><div class="obs-opts" style="grid-template-columns:repeat(4,minmax(0,1fr))">${sync.map((t,vi)=>`<button class="obs-opt lv${vi+1}" data-bobs="${bk}.sync" data-val="${vi+1}" aria-pressed="${o.sync===vi+1}">${t}</button>`).join("")}</div></div>
+    ${el.map(x=>`<div class="obs-row"><div class="obs-lab">Mémorisation : ${esc(x.nom)}</div><div class="obs-opts" style="grid-template-columns:repeat(4,minmax(0,1fr))">${BOBS_MEM.map((t,vi)=>`<button class="obs-opt lv${vi+1}" data-bobs="${bk}.mem.${x.i}" data-val="${vi+1}" aria-pressed="${(o.mem||{})[x.i]===vi+1}">${t}</button>`).join("")}</div></div>`).join("")}
+    <label class="f" style="margin-top:10px">Conseils pour améliorer le bloc</label>${inp(`blocObs.${bk}.conseils`,"","textarea")}
+  </div>`;
+}
+const obsIdxs={};
+const OBS_TITLE={preobs:"Pré-évaluation",obs:"Évaluation"};
+function renderObs(){ renderObsK("preobs"); renderObsK("obs"); }
+function renderObsK(kind){
+  let obsIdx=obsIdxs[kind];
+  const p=P();
+  const el=(p.ident.eleves||[]).map((e,i)=>({i,nom:[e.prenom,e.nom].filter(Boolean).join(" "),o:e[kind]||{}})).filter(x=>x.nom);
+  if(!el.length){ $("#s-"+kind).innerHTML=`<h2>${OBS_TITLE[kind]}</h2><div class="card"><p class="muted" style="margin:0">Ajoutez les élèves du groupe dans « Mon dossier » : chacun aura sa fiche d'observation.</p></div>`; return; }
+  if(obsIdx==null || !el.some(x=>x.i===obsIdx)) obsIdx=obsIdxs[kind]=el[0].i;
+  const me=el.find(x=>x.i===obsIdx), o=me.o, pas=o.p||[{},{}];
+  const passage=k=>`
+    <div class="card ev-card">
+      <h3 style="margin-top:0">${k===0?"1er":"2e"} passage</h3>
+      ${OBS_CRIT.map(([key,lab,opts])=>`<div class="obs-row"><div class="obs-lab">${lab}</div><div class="obs-opts" style="grid-template-columns:repeat(${opts.length},minmax(0,1fr))">${opts.map((t,vi)=>`<button class="obs-opt ${opts.length===4?"lv"+(vi+1):(vi===0?"lv1":"lv4")}" data-obs="${kind}.${me.i}.${k}.${key}" data-val="${vi+1}" aria-pressed="${pas[k]&&pas[k][key]===vi+1}">${t}</button>`).join("")}</div></div>`).join("")}
+      ${k===0?`<label class="f" style="margin-top:12px">Conseils que tu donnerais pour améliorer l'enchaînement</label>${inp(`ident.eleves.${me.i}.${kind}.conseils`,"","textarea")}`:""}
+    </div>`;
+  $("#s-"+kind).innerHTML = `
+  <h2>${OBS_TITLE[kind]}</h2>
+  <p class="lead">L'observateur prend l'iPad du groupe, choisit le prénom de l'élève qu'il observe, écrit son propre nom, puis coche ce qu'il voit pendant les deux passages.</p>
+  <div class="card" style="margin-bottom:16px;border-left:5px solid var(--accent)">
+    <b>Vidéo du passage du groupe</b>
+    <p class="muted" style="margin:4px 0 10px;font-size:14px">${kind==="obs"?"Le jour de l'évaluation, filmez":"Pendant la pré-évaluation, filmez"} le passage du groupe avec cet iPad. La vidéo reste sur l'iPad.</p>
+    <div class="grid g2">${[1,2].map(n=>`<div><label class="f">Passage ${n}</label><div class="video-box" data-vid="${store.current}-${kind==="obs"?"":"pre"}passage${n}"></div></div>`).join("")}</div>
+  </div>
+  <p class="f" style="margin:0 0 6px;font-weight:700;color:var(--ink-2)">Élève observé :</p>
+  <div class="subtabs no-print" role="tablist" style="flex-wrap:wrap">${el.map(x=>`<button data-obspage="${kind}.${x.i}" aria-selected="${x.i===obsIdx}">${esc(x.nom)}</button>`).join("")}</div>
+  <div class="card" style="margin-bottom:14px"><div class="grid g2">
+    <div><label class="f">Élève observé (pratiquant)</label><div class="inp" style="background:#f6f4ef;display:flex;align-items:center;font-weight:700">${esc(me.nom)}</div></div>
+    <div><label class="f">Observateur : écris ton nom et ton prénom</label>${inp(`ident.eleves.${me.i}.${kind}.observateur`,"Nom et prénom de l'observateur")}</div>
+  </div></div>
+  ${passage(0)}${passage(1)}
+  <div class="card"><b>Passage choisi par ton élève pour l'évaluation</b>
+    <div class="seg" style="margin-top:8px">${[1,2].map(v=>`<button class="d" data-obschoix="${kind}.${me.i}" data-val="${v}" aria-pressed="${o.choix===v}">Passage ${v}</button>`).join("")}</div>
+  </div>`;
+  hydrateVideos();
+}
+let autoIdx=null;
+function renderBilan(){
+  const p=P();
+  const el=(p.ident.eleves||[]).map((e,i)=>({i,nom:[e.prenom,e.nom].filter(Boolean).join(" "),au:e.auto||{},ev:e.eval||{}})).filter(x=>x.nom);
+  if(!el.length){ $("#s-bilan").innerHTML=`<h2>Auto-évaluation</h2><div class="card"><p class="muted" style="margin:0">Ajoutez les élèves du groupe dans « Mon dossier » : chacun aura sa page d'auto-évaluation.</p></div>`; return; }
+  if(autoIdx==null || !el.some(x=>x.i===autoIdx)) autoIdx=el[0].i;
+  const me=el.find(x=>x.i===autoIdx), done=EVAL.filter((_,ci)=>me.au[ci]).length;
+  $("#s-bilan").innerHTML = `
+  <h2>Auto-évaluation</h2>
+  <p class="lead">Chaque élève choisit sa page, lit la grille et touche le niveau qu'il pense avoir atteint pour chaque critère.</p>
+  <div class="subtabs no-print" role="tablist" style="flex-wrap:wrap">${el.map(x=>`<button data-autopage="${x.i}" aria-selected="${x.i===autoIdx}">${esc(x.nom)}${EVAL.every((_,ci)=>x.au[ci])?" ✓":""}</button>`).join("")}</div>
+  <div class="card" style="margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <b style="font-size:20px">Page de ${esc(me.nom)}</b><span class="muted">${done} / ${EVAL.length} critères évalués</span>
+  </div>
+  ${EVAL.map((c,ci)=>`
+    <div class="card ev-card">
+      <div class="ev-head"><div><b>${ci+1}. ${c.t}</b>${c.d?`<small>${c.d}</small>`:""}</div><span class="pill p-gray">${c.w} %</span></div>
+      <div class="ev-levels">${c.l.map((txt,li)=>`<button class="ev-lvl lv${li+1}" data-autoe="${me.i}.${ci}" data-val="${li+1}" aria-pressed="${me.au[ci]===li+1}"><span class="ev-lvl-t">${li+1} · ${EVAL_NIV[li]}</span><span>${txt}</span>${me.au[ci]===li+1?`<span class="ev-mark">✓ Mon choix</span>`:""}</button>`).join("")}</div>
+      ${me.ev[ci]?`<p class="muted" style="margin:8px 0 0;font-size:14px">Niveau donné par le professeur : <b>${me.ev[ci]} · ${EVAL_NIV[me.ev[ci]-1]}</b></p>`:""}
+    </div>`).join("")}
+  <div class="grid g2">
+    <div class="card"><label class="f">Mon point fort</label>${inp(`ident.eleves.${me.i}.pointFort`,"","textarea")}</div>
+    <div class="card"><label class="f">Ce que je dois encore améliorer</label>${inp(`ident.eleves.${me.i}.ameliorer`,"","textarea")}</div>
+  </div>`;
+}
+
+function renderEval(){
+  const p=P(); p.evalGroupe=p.evalGroupe||{};
+  const el=(p.ident.eleves||[]).map((e,i)=>({i,nom:[e.prenom,e.nom].filter(Boolean).join(" "),ev:e.eval||{}})).filter(x=>x.nom);
+  $("#s-eval").innerHTML = `
+  <h2>Barème évaluation</h2>
+  <p class="lead">Grille CA3 Step 2026. Le groupe touche le niveau qu'il pense avoir atteint pour chaque critère. Le professeur note ensuite chaque élève ${profMode?"":"(🔒 mode professeur)"}.</p>
+  ${EVAL.map((c,ci)=>`
+    <div class="card ev-card">
+      <div class="ev-head"><div><b>${ci+1}. ${c.t}</b>${c.d?`<small>${c.d}</small>`:""}</div><span class="pill p-gray">${c.w} %</span></div>
+      <div class="ev-levels">${c.l.map((txt,li)=>`<button class="ev-lvl lv${li+1}" data-evg="${ci}" data-val="${li+1}" aria-pressed="${p.evalGroupe[ci]===li+1}"><span class="ev-lvl-t">${li+1} · ${EVAL_NIV[li]}</span><span>${txt}</span>${p.evalGroupe[ci]===li+1?`<span class="ev-mark">✓ Le groupe</span>`:""}</button>`).join("")}</div>
+      <div class="ev-prof">
+        <div class="ev-prof-h">Le professeur ${profMode?"":"🔒"}</div>
+        ${el.map(s=>`<div class="ev-row"><span>${esc(s.nom)}</span><div class="seg">${[1,2,3,4].map(v=>`<button class="lb${v}" data-eve="${s.i}.${ci}" data-val="${v}" aria-pressed="${s.ev[ci]===v}" ${profMode?"":"disabled"}>${v}</button>`).join("")}</div></div>`).join("")||`<p class="muted">Ajoutez les élèves dans « Mon dossier ».</p>`}
+      </div>
+    </div>`).join("")}
+  <h3>Récapitulatif</h3>
+  <div class="scroll-x"><table class="t ev-sum"><thead><tr><th>Élève</th>${EVAL.map((c,ci)=>`<th title="${esc(c.t)}">C${ci+1}<br><small>${c.w} %</small></th>`).join("")}<th>Note /20</th></tr></thead>
+  <tbody>${el.map(s=>{const n=evalNote(s.ev); return `<tr><td><b>${esc(s.nom)}</b></td>${EVAL.map((_,ci)=>`<td>${s.ev[ci]?`<span class="ev-dot lv${s.ev[ci]}">${s.ev[ci]}</span>`:"–"}</td>`).join("")}<td><b>${n==null?"–":String(n).replace(".",",")}</b></td></tr>`;}).join("")}</tbody></table></div>
+  <p class="muted" style="font-size:13px">Note indicative : chaque critère compte pour son pourcentage, avec niveau 4 = 100 %, 3 = 75 %, 2 = 50 %, 1 = 25 %. Elle s'affiche quand les 6 critères sont notés.</p>`;
+}
+
+/* ===== Fichier .zip (dossier + vidéos) sans bibliothèque ===== */
+const CRC_T=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(u8){let c=0xFFFFFFFF;for(let i=0;i<u8.length;i++)c=CRC_T[(c^u8[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+async function makeZip(entries){
+  const parts=[],central=[];let off=0;const enc=new TextEncoder();
+  for(const e of entries){
+    const name=enc.encode(e.name), data=new Uint8Array(await e.blob.arrayBuffer()), crc=crc32(data);
+    const lh=new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true);lh.setUint16(4,20,true);lh.setUint16(6,0x0800,true);lh.setUint16(8,0,true);
+    lh.setUint32(14,crc,true);lh.setUint32(18,data.length,true);lh.setUint32(22,data.length,true);lh.setUint16(26,name.length,true);
+    parts.push(lh.buffer,name,data);
+    const ch=new DataView(new ArrayBuffer(46));
+    ch.setUint32(0,0x02014b50,true);ch.setUint16(4,20,true);ch.setUint16(6,20,true);ch.setUint16(8,0x0800,true);
+    ch.setUint32(16,crc,true);ch.setUint32(20,data.length,true);ch.setUint32(24,data.length,true);ch.setUint16(28,name.length,true);ch.setUint32(42,off,true);
+    central.push(ch.buffer,name);
+    off+=30+name.length+data.length;
+  }
+  const csize=central.reduce((a,b)=>a+(b.byteLength??b.length),0);
+  const end=new DataView(new ArrayBuffer(22));
+  end.setUint32(0,0x06054b50,true);end.setUint16(8,entries.length,true);end.setUint16(10,entries.length,true);end.setUint32(12,csize,true);end.setUint32(16,off,true);
+  return new Blob([...parts,...central,end.buffer],{type:"application/zip"});
+}
+async function readZip(file){
+  const tailLen=Math.min(file.size,66000), tail=new DataView(await file.slice(file.size-tailLen).arrayBuffer());
+  let e=-1; for(let i=tailLen-22;i>=0;i--){ if(tail.getUint32(i,true)===0x06054b50){e=i;break;} }
+  if(e<0) throw new Error("zip");
+  const count=tail.getUint16(e+10,true), cdSize=tail.getUint32(e+12,true), cdOff=tail.getUint32(e+16,true);
+  const cd=new DataView(await file.slice(cdOff,cdOff+cdSize).arrayBuffer()); const dec=new TextDecoder(); const out=[]; let q=0;
+  for(let k=0;k<count;k++){
+    const method=cd.getUint16(q+10,true), size=cd.getUint32(q+20,true), nl=cd.getUint16(q+28,true), xl=cd.getUint16(q+30,true), cl=cd.getUint16(q+32,true), lo=cd.getUint32(q+42,true);
+    const name=dec.decode(new Uint8Array(cd.buffer,q+46,nl)); q+=46+nl+xl+cl;
+    const lh=new DataView(await file.slice(lo,lo+30).arrayBuffer()); const start=lo+30+lh.getUint16(26,true)+lh.getUint16(28,true);
+    if(method===0) out.push({name,blob:file.slice(start,start+size)});
+  }
+  return out;
+}
+const VID_TYPES={mov:"video/quicktime",mp4:"video/mp4",m4v:"video/x-m4v",webm:"video/webm"};
+function vidExt(b){ const t=(b&&b.type)||""; return t.includes("quicktime")?"mov":t.includes("webm")?"webm":t.includes("m4v")?"m4v":"mp4"; }
+async function groupVideoKeys(id){ const r=await vidOp("readonly",s=>s.getAllKeys()); return (Array.isArray(r)?r:[]).filter(k=>String(k).startsWith(id+"-")); }
+async function receiveOne(f){
+  if(/\.zip$/i.test(f.name)||f.type.includes("zip")){
+    const ents=await readZip(f); const js=ents.find(x=>x.name==="dossier.json"); if(!js) throw new Error("zip");
+    const r=ingest(await js.blob.text()); let nv=0;
+    for(const v of ents.filter(x=>x.name.startsWith("videos/"))){
+      const fn=v.name.slice(7), ext=fn.split(".").pop().toLowerCase(), key=fn.replace(/\.[^.]+$/,"");
+      if(!key.startsWith(r.p.id+"-")) continue;
+      if(await putVid(key,new Blob([v.blob],{type:VID_TYPES[ext]||"video/mp4"}))!==null){ nv++; if(vidURLs[key]){URL.revokeObjectURL(vidURLs[key]);delete vidURLs[key];} }
+    }
+    r.videos=nv; return r;
+  }
+  return ingest(await f.text());
+}
+/* ===== Espace professeur : réception et suivi des dossiers ===== */
+let classeFilter="";
+function ingest(txt){
+  const d=JSON.parse(txt); const q=d.profile;
+  if(d.app!=="step4e"||!q||!q.ident) throw new Error("format");
+  const isNew=!store.profiles[q.id];
+  const merged=Object.assign(blankProfile(),q); merged.creation=Object.assign(blankProfile().creation,q.creation||{});
+  if(!merged.id) merged.id=uid();
+  merged.recu=Date.now(); merged.envoye=d.exported||"";
+  store.profiles[merged.id]=merged; return {isNew,p:merged};
+}
+function receiveFiles(){
+  const i=document.createElement("input"); i.type="file"; i.accept=".json,.zip,application/json,application/zip"; i.multiple=true;
+  i.oncancel=()=>{ if(!P()) newProfileModal(true); };
+  i.onchange=async()=>{
+    let n=0,maj=0,nv=0; const bad=[];
+    toast("Réception en cours…");
+    for(const f of i.files){ try{ const r=await receiveOne(f); r.isNew?n++:maj++; nv+=r.videos||0; }catch(e){ bad.push(f.name); } }
+    if(!store.current||!store.profiles[store.current]) store.current=sortedGroups()[0]||null;
+    if(!P()){ toast("Aucun dossier reconnu."); newProfileModal(true); return; }
+    closeModal(); save(); renderAll(); goTab("classe");
+    toast(`${n} dossier${n>1?"s":""} reçu${n>1?"s":""}${maj?`, ${maj} mis à jour`:""}${nv?` · ${nv} vidéo${nv>1?"s":""}`:""}${bad.length?` · ${bad.length} fichier(s) non reconnu(s)`:""}`);
+  };
+  i.click();
+}
+function groupStats(q){
+  const maitrise=REPERTOIRE.filter(x=>q.pas&&q.pas["rep-"+slug(x.n)]===3).length;
+  const b1=BLOC1.filter((_,i)=>q.bloc1&&q.bloc1["N"+(i+1)]?.prof).length, b2=BLOC2.filter((_,i)=>q.bloc2&&q.bloc2["N"+(i+1)]?.prof).length;
+  const ph=bk=>(q.creation&&q.creation[bk]?q.creation[bk].phrases:[]).filter(x=>x.pas.reduce((a,y)=>a+y.t,0)===8).length;
+  const el=(q.ident.eleves||[]).filter(e=>e.prenom||e.nom);
+  return {maitrise,b1,b2,b3:ph("b3"),b4:ph("b4"),el};
+}
+function fmtDate(t){ if(!t) return "–"; const d=new Date(t); return d.toLocaleDateString("fr-FR",{day:"2-digit",month:"2-digit"})+" "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}); }
+function renderClasse(){
+  if(!profMode){ $("#s-classe").innerHTML=""; return; }
+  const ids=sortedGroups(); const classes=[...new Set(ids.map(id=>store.profiles[id].ident.classe||"Sans classe"))];
+  const shown=ids.filter(id=>!classeFilter||(store.profiles[id].ident.classe||"Sans classe")===classeFilter);
+  const pill=(v,max)=>`<span class="bb-val ${v===max?"ok":v>0?"mid":"no"}">${v} / ${max}</span>`;
+  $("#s-classe").innerHTML = `
+  <h2>Classe</h2>
+  <p class="lead">Recevez les dossiers des groupes, puis touchez un groupe pour ouvrir son dossier. Les flèches ‹ › en haut passent d'un groupe à l'autre.</p>
+  <div class="toolbar no-print">
+    <button class="btn accent" id="recvBtn">⬇︎ Recevoir des dossiers</button>
+    <button class="btn ghost" id="csvBtn">Exporter les notes (CSV)</button>
+    ${classes.length>1?`<select class="inp" id="classeSel" style="max-width:220px"><option value="">Toutes les classes</option>${classes.map(c=>`<option ${c===classeFilter?"selected":""}>${esc(c)}</option>`).join("")}</select>`:""}
+  </div>
+  <div class="card" style="margin-bottom:14px;font-size:14px;color:var(--ink-2)"><b style="color:var(--ink)">Comment récupérer les dossiers ?</b> Sur l'iPad de chaque groupe : menu ☰ → « Envoyer le dossier au professeur » → AirDrop vers votre iPad (ou mail / OneDrive). Ici, touchez « Recevoir des dossiers » et choisissez les fichiers reçus (plusieurs d'un coup). Un groupe déjà reçu est mis à jour.</div>
+  <div class="grp-grid">${shown.map(id=>{const q=store.profiles[id], st=groupStats(q); return `
+    <button class="grp-card ${id===store.current?"cur":""}" data-opengrp="${id}">
+      <div class="grp-top"><span class="av">${esc(initials(q))}</span><div><b>${esc(fullName(q))}</b><small>${esc(q.ident.classe||"Sans classe")}</small></div></div>
+      <div class="grp-el">${st.el.map(e=>{const n=evalNote(e.eval); return `<span>${esc([e.prenom,e.nom].filter(Boolean).join(" "))}${n!=null?` <b>${String(n).replace(".",",")}</b>`:""}</span>`;}).join("")||'<span class="muted">Aucun élève</span>'}</div>
+      <div class="grp-stats">
+        <div><small>Pas</small>${pill(st.maitrise,REPERTOIRE.length)}</div>
+        <div><small>Bloc 1</small>${pill(st.b1,6)}</div>
+        <div><small>Bloc 2</small>${pill(st.b2,5)}</div>
+        <div><small>Bloc 3</small>${pill(st.b3,4)}</div>
+        <div><small>Bloc 4</small>${pill(st.b4,4)}</div>
+      </div>
+      <small class="muted">${q.recu?`Reçu le ${fmtDate(q.recu)}`:`Modifié le ${fmtDate(q.updated)}`}<span class="grp-vids" data-gv="${id}"></span></small>
+    </button>`;}).join("")||`<p class="muted">Aucun dossier pour l'instant.</p>`}</div>`;
+  $("#recvBtn").onclick=receiveFiles;
+  shown.forEach(async id=>{ const ks=await groupVideoKeys(id); const el=document.querySelector(`[data-gv="${id}"]`); if(el&&ks.length){ const ev=ks.filter(k=>/-passage[12]$/.test(k)).length; el.textContent=` · 🎥 ${ks.length} vidéo${ks.length>1?"s":""}${ev?` dont ${ev} d'évaluation`:""}`; } });
+  $("#csvBtn").onclick=exportCSV;
+  const cs=$("#classeSel"); if(cs) cs.onchange=()=>{ classeFilter=cs.value; renderClasse(); };
+}
+function exportCSV(){
+  const rows=[["Classe","Groupe","Élève",...EVAL.map((c,i)=>`C${i+1} ${c.t} (${c.w}%)`),"Note /20"]];
+  sortedGroups().forEach(id=>{ const q=store.profiles[id]; (q.ident.eleves||[]).filter(e=>e.prenom||e.nom).forEach(e=>{ const ev=e.eval||{}; const n=evalNote(ev); rows.push([q.ident.classe||"",fullName(q),[e.prenom,e.nom].filter(Boolean).join(" "),...EVAL.map((_,i)=>ev[i]||""),n==null?"":String(n).replace(".",",")]); }); });
+  const csv="\ufeff"+rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(";")).join("\n");
+  if(/claude/.test(location.hostname)){
+    openModal(`<h3>Notes (CSV)</h3><p class="muted" style="margin-top:0">Copiez ce texte et collez-le dans Excel ou Numbers.</p><textarea class="inp" id="csvTxt" readonly style="min-height:200px;font-size:12px">${esc(csv.slice(1))}</textarea><div class="row"><button class="btn" data-close>Fermer</button></div>`);
+    return;
+  }
+  const blob=new Blob([csv],{type:"text/csv"}); const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="notes-step-4e.csv"; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);
+}
+function renderAll(){
+  if(!P()) return;
+  renderDossier(); renderSecurite(); $("#s-pas").innerHTML=""; renderPas();
+  renderBloc(1); renderBloc(2); renderCreation(); renderObs(); renderBilan(); renderEval(); renderClasse(); renderWho();
+}
+function renderWho(){ const p=P(); if(!p) return; $("#whoAv").textContent=initials(p); $("#whoName").textContent=fullName(p);
+  const ids=sortedGroups(), show=profMode&&ids.length>1; $("#prevG").hidden=!show; $("#nextG").hidden=!show; }
+function sortedGroups(){ return Object.keys(store.profiles).sort((a,b)=>{const A=store.profiles[a].ident,B=store.profiles[b].ident; return (A.classe||"").localeCompare(B.classe||"","fr")||fullName(store.profiles[a]).localeCompare(fullName(store.profiles[b]),"fr",{numeric:true});}); }
+function switchGroup(id,tab){ store.current=id; save(); const t=tab||curTab; renderAll(); goTab(t==="classe"&&!profMode?"dossier":t); toast(fullName(P())); }
+
+/* ================= ONGLETS ================= */
+let curTab = "dossier";
+const ICONS={
+  classe:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  dossier:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14c2 .8 3.5 2.8 3.5 6"/>',
+  securite:'<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  pas:'<ellipse cx="8" cy="8.5" rx="2.6" ry="4"/><ellipse cx="16" cy="12.5" rx="2.6" ry="4"/><path d="M6.6 16h2.8M14.6 20h2.8"/>',
+  bloc1:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',
+  bloc2:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12.5l9 5 9-5"/><path d="M3 16.5l9 5 9-5"/>',
+  creation:'<path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/><path d="M19 15v4M17 17h4"/>',
+  preobs:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  obs:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M9 13l2 2 4-4"/>',
+  bilan:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6"/><path d="M15.5 11l2 2 4-4"/>',
+  eval:'<circle cx="12" cy="9" r="5.5"/><path d="M8.6 13.4L7 21l5-3 5 3-1.6-7.6"/>'
+};
+function icon(k){ return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]||""}</svg>`; }
+const SEC_THEME={classe:["eval","Espace professeur"],dossier:["learn","Le groupe"],securite:["learn","Avant de commencer"],pas:["learn","Apprendre"],bloc1:["do","Pratiquer"],bloc2:["do","Pratiquer"],creation:["do","Créer"],preobs:["eval","S'entraîner à évaluer"],obs:["eval","Évaluer"],bilan:["eval","S'évaluer"],eval:["eval","Professeur"]};
+const STEP_DECO='<svg class="sec-deco" viewBox="0 0 240 110" aria-hidden="true"><rect x="20" y="30" width="200" height="52" rx="10" fill="#fff" fill-opacity=".7" stroke="currentColor" stroke-opacity=".15" stroke-width="3"/><rect x="34" y="82" width="34" height="10" rx="3" fill="currentColor" fill-opacity=".12"/><rect x="172" y="82" width="34" height="10" rx="3" fill="currentColor" fill-opacity=".12"/><rect x="92" y="42" width="24" height="24" rx="5" fill="#d6403a" fill-opacity=".35"/><rect x="128" y="42" width="24" height="24" rx="5" fill="#1f9d6b" fill-opacity=".35"/></svg>';
+function decorateSection(sec){
+  const h=sec.firstElementChild; if(!h || h.tagName!=="H2") return;
+  const k=sec.id.slice(2), [th,eb]=SEC_THEME[k]||["learn",""];
+  const head=document.createElement("div"); head.className="sec-head theme-"+th;
+  head.innerHTML=`<div class="sec-ico">${icon(k)}</div><div><div class="sec-eyebrow">${eb}</div></div>${STEP_DECO}`;
+  const box=head.children[1];
+  sec.insertBefore(head,h); box.appendChild(h);
+  const nx=head.nextElementSibling; if(nx && nx.classList.contains("lead")) box.appendChild(nx);
+}
+document.querySelectorAll(".section").forEach(sec=>{ new MutationObserver(()=>decorateSection(sec)).observe(sec,{childList:true}); });
+function renderTabs(){
+  $("#tabs").innerHTML = TABS.filter(([k])=>k!=="classe"||profMode).map(([k,l])=>`<button class="tab${k==="bloc1"||k==="preobs"?" grp-start":""}" role="tab" data-tab="${k}" aria-selected="${k===curTab}">${icon(k)}${l}</button>`).join("");
+  document.querySelectorAll(".section").forEach(s=>s.classList.toggle("active", s.id==="s-"+curTab));
+}
+function goTab(k){
+  curTab=k; renderTabs(); window.scrollTo({top:0});
+  try{ sessionStorage.setItem("step4e-tab",k) }catch(e){}
+  if(k==="dossier") renderDossier();
+  const b=document.querySelector(`.tab[data-tab="${k}"]`); if(b) b.scrollIntoView({inline:"center",block:"nearest"});
+}
+$("#tabs").addEventListener("click",e=>{const b=e.target.closest("[data-tab]"); if(b) goTab(b.dataset.tab);});
+
+/* ================= ÉVÉNEMENTS ================= */
+document.addEventListener("input",e=>{
+  const el=e.target;
+  if(el.id==="pasSearch"){ pasFilter.q=el.value; renderPas(); return; }
+  const path=el.dataset?.bind; if(!path||!P()) return;
+  const val = el.dataset.num ? +el.value : el.value;
+  setPath(P(),path,val); save();
+  const show=document.querySelector(`[data-show="${path}"]`); if(show) show.textContent=val||"–";
+  if(path.startsWith("ident.")) renderWho();
+});
+
+function requireProf(cb){
+  if(profMode) return cb();
+  askCode(()=>{ setProf(true); cb(); });
+}
+function askCode(ok){
+  openModal(`<h3>Code professeur</h3><p class="muted" style="margin-top:0">Cette action est réservée au professeur.</p>
+    <input class="inp" id="codeIn" type="password" autocomplete="off" placeholder="Code">
+    <p id="codeErr" style="color:var(--red);font-weight:600;display:none;margin:8px 0 0">Code incorrect.</p>
+    <div class="row"><button class="btn ghost" data-close>Annuler</button><button class="btn accent" id="codeOk">Valider</button></div>`);
+  const go=()=>{ if($("#codeIn").value.trim().toLowerCase()===CODE_PROF.toLowerCase()){ closeModal(); ok(); } else { $("#codeErr").style.display="block"; } };
+  $("#codeOk").onclick=go; $("#codeIn").onkeydown=e=>{ if(e.key==="Enter") go(); };
+}
+function setProf(on){
+  profMode=on; document.body.classList.toggle("prof",on); $("#profBtn").classList.toggle("on",on);
+  renderBilan(); renderEval(); rerenderVideoLists(); renderWho();
+  if(on){ renderClasse(); goTab("classe"); } else { if(curTab==="classe") goTab("dossier"); else renderTabs(); }
+  toast(on?"Mode professeur activé":"Mode professeur désactivé");
+}
+$("#profBtn").onclick=()=>{ if(profMode) setProf(false); else askCode(()=>setProf(true)); };
+
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("button,[data-close]"); if(!t) return;
+  const p=P();
+  if(t.hasAttribute("data-close")){ closeModal(); return; }
+  if(t.dataset.addeleve){ p.ident.eleves=p.ident.eleves||[]; if(p.ident.eleves.length<6){ p.ident.eleves.push({nom:"",prenom:""}); save(); renderDossier(); } return; }
+  if(t.dataset.rmeleve){ p.ident.eleves.splice(+t.dataset.rmeleve,1); save(); renderDossier(); return; }
+  if(t.dataset.bobs){ const parts=t.dataset.bobs.split("."), bk=parts[0], v=+t.dataset.val; p.blocObs=p.blocObs||{}; const o=p.blocObs[bk]=p.blocObs[bk]||{};
+    if(parts[1]==="sync") o.sync= o.sync===v?0:v; else { o.mem=o.mem||{}; o.mem[parts[2]]= o.mem[parts[2]]===v?0:v; }
+    save(); const y=scrollY; if(bk==="b1"||bk==="b2") renderBloc(+bk[1]); else renderCreation(); scrollTo(0,y); return; }
+  if(t.dataset.obspage){ const [kd,ix]=t.dataset.obspage.split("."); obsIdxs[kd]=+ix; renderObsK(kd); window.scrollTo({top:0}); return; }
+  if(t.dataset.obs){ const [kd,i,k,key]=t.dataset.obs.split("."), v=+t.dataset.val; const e=p.ident.eleves[+i]; e[kd]=e[kd]||{}; e[kd].p=e[kd].p||[{},{}]; e[kd].p[+k][key]= e[kd].p[+k][key]===v?0:v; save(); const y=scrollY; renderObsK(kd); scrollTo(0,y); return; }
+  if(t.dataset.obschoix){ const [kd,ix]=t.dataset.obschoix.split("."); const e=p.ident.eleves[+ix], v=+t.dataset.val; e[kd]=e[kd]||{}; e[kd].choix= e[kd].choix===v?0:v; save(); const y=scrollY; renderObsK(kd); scrollTo(0,y); return; }
+  if(t.dataset.opengrp){ switchGroup(t.dataset.opengrp,"dossier"); return; }
+  if(t.dataset.autopage){ autoIdx=+t.dataset.autopage; renderBilan(); window.scrollTo({top:0}); return; }
+  if(t.dataset.autoe){ const [i,c]=t.dataset.autoe.split(".").map(Number), v=+t.dataset.val; const e=p.ident.eleves[i]; e.auto=e.auto||{}; e.auto[c]= e.auto[c]===v?0:v; save(); const y=scrollY; renderBilan(); scrollTo(0,y); return; }
+  if(t.dataset.evg){ const c=+t.dataset.evg, v=+t.dataset.val; p.evalGroupe=p.evalGroupe||{}; p.evalGroupe[c]= p.evalGroupe[c]===v?0:v; save(); const y=scrollY; renderEval(); scrollTo(0,y); return; }
+  if(t.dataset.eve){ const [i,c]=t.dataset.eve.split(".").map(Number), v=+t.dataset.val; const doIt=()=>{ const e=p.ident.eleves[i]; e.eval=e.eval||{}; e.eval[c]= e.eval[c]===v?0:v; save(); const y=scrollY; renderEval(); renderBilan(); scrollTo(0,y); }; requireProf(doIt); return; }
+  if(t.dataset.hors){ const [bk,i]=t.dataset.hors.split("."); const ph=p.creation[bk].phrases[+i]; ph.horsStep=!ph.horsStep; save(); rerenderPhrase(bk,+i); return; }
+  if(t.dataset.inter){ const [bk,i]=t.dataset.inter.split("."); const ph=p.creation[bk].phrases[+i]; ph.interaction=!ph.interaction; save(); rerenderPhrase(bk,+i); return; }
+  if(t.dataset.form){ const [bk,i]=t.dataset.form.split("."); const ph=p.creation[bk].phrases[+i]; ph.changeStep=!ph.changeStep; save(); rerenderPhrase(bk,+i); return; }
+  if(t.dataset.bras){ const [bk,i]=t.dataset.bras.split("."); const ph=p.creation[bk].phrases[+i]; const v=t.dataset.val==="1"; ph.brasOui = ph.brasOui===v ? undefined : v; save(); rerenderPhrase(bk,+i); if(ph.brasOui){ const f=document.querySelector(`[data-bind="creation.${bk}.phrases.${i}.bras"]`); if(f) f.focus(); } return; }
+  if(t.dataset.addcrea){
+    const name=t.dataset.addcrea, pas=REPERTOIRE.find(x=>x.n===name); if(!pas) return;
+    const cell=(bk,i)=>{ const tot=p.creation[bk].phrases[i].pas.reduce((a,x)=>a+x.t,0); return `<button class="btn ghost addto" data-addto="${bk}.${i}"><b>Phrase ${i+1}</b><small class="${tot===8?"ok":tot>8?"high":""}">${tot} / 8 temps</small></button>`; };
+    openModal(`<h3>Ajouter « ${esc(name)} » (${pas.t} temps)</h3><p class="muted" style="margin-top:0">Dans quelle phrase ?</p>
+      ${["b3","b4"].map(bk=>`<p style="margin:10px 0 6px;font-weight:800">Bloc ${bk[1]}</p><div class="addto-grid">${[0,1,2,3].map(i=>cell(bk,i)).join("")}</div>`).join("")}
+      <div class="row"><button class="btn ghost" data-close>Annuler</button></div>`);
+    $("#modal").querySelectorAll("[data-addto]").forEach(b=>b.onclick=()=>{ const [bk,i]=b.dataset.addto.split("."); p.creation[bk].phrases[+i].pas.push({n:pas.n,t:pas.t}); save(); creaTab=bk; renderCreation(); closeModal(); toast(`${pas.n} ajouté au bloc ${bk[1]}, phrase ${+i+1}`); });
+    return;
+  }
+  if(t.dataset.schema){ openSchema(t.dataset.schema,t.dataset.name,t.dataset.padlet); return; }
+  if(t.dataset.playvid){ playVideo(t.dataset.playvid,t.dataset.padlet,t.dataset.name); return; }
+  if(t.dataset.filter){ pasFilter[t.dataset.filter]=t.dataset.val; renderPas(); return; }
+  if(t.dataset.pas){ const v=+t.dataset.val; p.pas[t.dataset.pas] = p.pas[t.dataset.pas]===v ? 0 : v; save(); renderMesPas(); return; }
+  if(t.dataset.lvl){
+    const doIt=()=>{ const [k,L,f]=t.dataset.lvl.split("."); p[k][L]=p[k][L]||{}; p[k][L][f]=!p[k][L][f];
+      if(f==="prof"&&p[k][L][f]&&!p[k][L].date) p[k][L].date=new Date().toISOString().slice(0,10);
+      save(); renderBloc(+k.slice(-1)); };
+    if(t.dataset.needprof) requireProf(doIt); else doIt();
+    return;
+  }
+  if(t.dataset.crea){ creaTab=t.dataset.crea; document.querySelectorAll("[data-crea]").forEach(b=>b.setAttribute("aria-selected",b.dataset.crea===creaTab)); document.querySelectorAll("[data-panel]").forEach(d=>d.style.display=d.dataset.panel===creaTab?"block":"none"); return; }
+  if(t.dataset.addpas){
+    const [bk,i]=t.dataset.addpas.split("."); const sel=$(`#sel-${bk}-${i}`); const v=sel.value;
+    const add=(n,tt,extra)=>{ p.creation[bk].phrases[i].pas.push(Object.assign({n,t:tt},extra||{})); save(); rerenderPhrase(bk,+i); };
+    if(v==="__libre"){
+      openModal(`<h3>Créer notre propre pas</h3><label class="f">Nom du pas</label><input class="inp" id="libN" placeholder="ex. Basic sauté"><label class="f" style="margin-top:10px">Comment on le fait (temps par temps)</label><textarea class="inp" id="libD" placeholder="ex. 1 monte pied droit, 2 saute pieds joints sur le step, 3 descend pied droit, 4 assemble"></textarea><label class="f" style="margin-top:10px">Durée</label>
+        <div class="seg" id="libT"><button data-t="2" aria-pressed="false">2 temps</button><button data-t="4" aria-pressed="true">4 temps</button><button data-t="8" aria-pressed="false">8 temps</button></div>
+        <div class="row"><button class="btn ghost" data-close>Annuler</button><button class="btn accent" id="libOk">Ajouter</button></div>`);
+      $("#libT").onclick=ev=>{const b=ev.target.closest("[data-t]"); if(!b) return; $("#libT").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));};
+      $("#libOk").onclick=()=>{ const n=$("#libN").value.trim(); if(!n) return; const tt=+$("#libT").querySelector('[aria-pressed="true"]').dataset.t; const d=$("#libD").value.trim(); closeModal(); add(n,tt,{custom:1,desc:d}); };
+    } else { const [n,tt]=v.split("|"); add(n,+tt); }
+    return;
+  }
+  if(t.dataset.rmpas){ const [bk,i,j]=t.dataset.rmpas.split("."); p.creation[bk].phrases[i].pas.splice(+j,1); save(); rerenderPhrase(bk,+i); return; }
+  if(t.dataset.proc){ const k=t.dataset.proc; p.creation.procedes[k]=p.creation.procedes[k]||{}; p.creation.procedes[k].on=!p.creation.procedes[k].on; save(); const y=window.scrollY; renderCreation(); window.scrollTo(0,y); return; }
+  if(t.dataset.bilan){
+    const [i,who]=t.dataset.bilan.split("."); const v=t.dataset.val;
+    const doIt=()=>{ p.bilan[i]=p.bilan[i]||{}; p.bilan[i][who]= p.bilan[i][who]===v?"":v; save(); renderBilan(); };
+    if(who==="prof") requireProf(doIt); else doIt();
+    return;
+  }
+  if(t.dataset.viddel){ const k=t.dataset.viddel; await delVid(k); if(vidURLs[k]){URL.revokeObjectURL(vidURLs[k]); delete vidURLs[k];} hydrateVideos(); toast("Vidéo supprimée"); return; }
+});
+function rerenderPhrase(bk,i){
+  const old=document.querySelector(`[data-phrase="${bk}.${i}"]`); if(!old) return;
+  const sel=old.querySelector("select")?.value;
+  const w=document.createElement("div"); w.innerHTML=phraseHTML(bk,i); const nu=w.firstElementChild;
+  old.replaceWith(nu); if(sel) nu.querySelector("select").value=sel; hydrateVideos(); updateBilan(bk);
+}
+document.addEventListener("change",async e=>{
+  const el=e.target;
+  if(el.dataset?.pasvidin){
+    const f=el.files?.[0]; if(!f) return; const k=el.dataset.pasvidin;
+    toast("Enregistrement de la vidéo…");
+    if(await savePasVideo(k,f)){ closeModal(); rerenderVideoLists(); toast("Vidéo disponible hors connexion"); }
+    return;
+  }
+  if(el.dataset?.vidin){
+    const f=el.files?.[0]; if(!f) return; const k=el.dataset.vidin;
+    toast("Enregistrement de la vidéo…");
+    const r=await putVid(k,f);
+    if(r===null){ toast("La vidéo n'a pas pu être enregistrée (espace insuffisant ?)"); return; }
+    if(vidURLs[k]){URL.revokeObjectURL(vidURLs[k]); delete vidURLs[k];}
+    hydrateVideos(); toast("Vidéo enregistrée sur cet appareil");
+  }
+});
+
+/* ================= PROFILS ================= */
+function profilesModal(){
+  const ids=Object.keys(store.profiles).sort((a,b)=>fullName(store.profiles[a]).localeCompare(fullName(store.profiles[b]),"fr"));
+  openModal(`<h3>Groupes sur cet appareil</h3>
+    <div class="prof-list">${ids.map(id=>{const q=store.profiles[id]; return `<button class="prof-item ${id===store.current?"cur":""}" data-pick="${id}"><span class="av">${initials(q)}</span><span>${esc(fullName(q))}<small>${esc([q.ident.classe,membres(q).join(", ")].filter(Boolean).join(" · "))}</small></span>${id===store.current?"<b style='color:var(--accent)'>●</b>":""}</button>`}).join("")}</div>
+    <div class="row" style="justify-content:space-between">
+      ${P()?`<button class="btn ghost" id="delMe" style="color:var(--red)">Supprimer ce groupe</button>`:"<span></span>"}
+      <button class="btn accent" id="newP">+ Nouveau groupe</button>
+    </div>`);
+  $("#modal").querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{ store.current=b.dataset.pick; save(); closeModal(); renderAll(); goTab("dossier"); });
+  $("#newP").onclick=()=>newProfileModal(false);
+  const d=$("#delMe"); if(d) d.onclick=confirmDelete;
+}
+function newProfileModal(first=false){
+  openModal(`<h3>${first?"Bienvenue dans le dossier step du groupe":"Nouveau groupe"}</h3>
+    ${first?`<p class="muted" style="margin-top:0">Ce dossier est collectif : un dossier par groupe. Tout est enregistré sur cet appareil.</p>`:""}
+    <div class="grid" style="gap:10px;grid-template-columns:1fr 1fr">
+      <div><label class="f">Nom du groupe</label><input class="inp" id="npGroupe" placeholder="ex. Groupe 2" autocomplete="off"></div>
+      <div><label class="f">Classe</label><input class="inp" id="npClasse" placeholder="ex. 4ème B" autocomplete="off"></div>
+    </div>
+    <label class="f" style="margin-top:12px">Les élèves du groupe</label>
+    <div class="grid" style="gap:8px" id="npEleves">${[0,1,2,3].map(i=>`<div class="eleve-row"><span class="eleve-n">${i+1}</span><input class="inp" data-np="prenom" placeholder="Prénom" autocomplete="off"><input class="inp" data-np="nom" placeholder="Nom" autocomplete="off"></div>`).join("")}</div>
+    <button class="btn ghost sm" id="npAdd" style="margin-top:8px">+ Ajouter un élève</button>
+    <p class="muted" style="font-size:14px">Vous avez déjà un fichier de sauvegarde ? <button class="btn ghost sm" id="npImport" style="display:inline-flex">Charger le fichier</button></p>
+    <p id="npErr" style="color:var(--red);font-weight:600;display:none;margin:0">Indiquez le nom du groupe ou au moins un élève.</p>
+    <div class="row" style="justify-content:space-between">${first?`<button class="btn ghost" id="npProf">Je suis le professeur</button>`:`<button class="btn ghost" data-close>Annuler</button>`}<button class="btn accent" id="npOk">Créer le dossier du groupe</button></div>`);
+  const pb=$("#npProf"); if(pb) pb.onclick=()=>askCode(()=>{ profMode=true; document.body.classList.add("prof"); $("#profBtn").classList.add("on"); receiveFiles(); });
+  $("#npAdd").onclick=()=>{ const box=$("#npEleves"); const n=box.children.length; if(n>=6) return; box.insertAdjacentHTML("beforeend",`<div class="eleve-row"><span class="eleve-n">${n+1}</span><input class="inp" data-np="prenom" placeholder="Prénom" autocomplete="off"><input class="inp" data-np="nom" placeholder="Nom" autocomplete="off"></div>`); if(n+1>=6) $("#npAdd").remove(); };
+  $("#npOk").onclick=()=>{
+    const g=$("#npGroupe").value.trim(), cl=$("#npClasse").value.trim();
+    const el=[...$("#npEleves").children].map(r=>({prenom:r.querySelector('[data-np=prenom]').value.trim(), nom:r.querySelector('[data-np=nom]').value.trim().toUpperCase()}));
+    const filled=el.filter(e=>e.prenom||e.nom);
+    if(!g && !filled.length){ $("#npErr").style.display="block"; return; }
+    while(filled.length<4) filled.push({prenom:"",nom:""});
+    const q=blankProfile(g||"Groupe",cl,filled); store.profiles[q.id]=q; store.current=q.id; save(); closeModal(); renderAll(); goTab("dossier");
+  };
+  $("#npImport").onclick=importFile;
+}
+function confirmDelete(){
+  const p=P();
+  openModal(`<h3>Supprimer le dossier du ${esc(fullName(p))} ?</h3><p>Toutes les réponses et vidéos du groupe sur cet appareil seront effacées. Pensez à l'enregistrer avant si vous voulez le garder.</p>
+    <div class="row"><button class="btn ghost" data-close>Annuler</button><button class="btn danger" id="delOk">Supprimer</button></div>`);
+  $("#delOk").onclick=async()=>{
+    const id=store.current;
+    for(const k of ["b3","b4"]){ for(let i=1;i<=4;i++) await delVid(`${id}-${k}-p${i}`); await delVid(`${id}-${k}-complet`); }
+    await delVid(`${id}-passage1`); await delVid(`${id}-passage2`); await delVid(`${id}-prepassage1`); await delVid(`${id}-prepassage2`);
+    delete store.profiles[id]; store.current=Object.keys(store.profiles)[0]||null; save(); closeModal();
+    if(store.current){ renderAll(); goTab("dossier"); } else newProfileModal(true);
+  };
+}
+$("#whoBtn").onclick=profilesModal;
+$("#prevG").onclick=()=>{ const ids=sortedGroups(); const i=ids.indexOf(store.current); switchGroup(ids[(i-1+ids.length)%ids.length]); };
+$("#nextG").onclick=()=>{ const ids=sortedGroups(); const i=ids.indexOf(store.current); switchGroup(ids[(i+1)%ids.length]); };
+
+/* ================= MENU : EXPORT / IMPORT / IMPRESSION ================= */
+$("#menuBtn").onclick=()=>{
+  openModal(`<h3>Mon dossier</h3>
+    <div class="menu-list">
+      <button class="btn ghost" id="mExport">📤 Envoyer le dossier au professeur</button>
+      <button class="btn ghost" id="mImport">⬆︎ Charger un fichier</button>
+      <button class="btn ghost" id="mPrint">🖨 Imprimer / PDF</button>
+    </div>
+    <p class="muted" style="font-size:13px;margin-bottom:0">Le dossier s'enregistre automatiquement sur cet appareil. « Envoyer le dossier au professeur » crée un fichier à envoyer par AirDrop, avec les vidéos de l'évaluation si vous les cochez.</p>
+    <div class="row"><button class="btn" data-close>Fermer</button></div>`);
+  $("#mExport").onclick=exportModal; $("#mImport").onclick=importFile; $("#mPrint").onclick=()=>{ closeModal(); setTimeout(()=>window.print(),200); };
+};
+
+let dlRunning=false;
+function videosModal(){
+  const items=allVideoItems();
+  const main=items.filter(x=>x.v), have=items.filter(x=>offlineKeys.has(x.k));
+  const missing=main.filter(x=>!offlineKeys.has(x.k));
+  openModal(`<h3>Vidéos des pas hors connexion</h3>
+    <p style="margin-top:0"><b id="vCount">${have.length}</b> vidéo(s) enregistrée(s) sur cet appareil${main.length?` · ${main.length-missing.length} / ${main.length} vidéos du padlet`:""}.</p>
+    <div class="bar"><i id="vBar" style="width:${main.length?(main.length-missing.length)/main.length*100:0}%"></i></div>
+    <p class="muted" id="vMsg" style="font-size:14px">Une fois enregistrées, les vidéos se lisent sans connexion, même en classe sans wifi.</p>
+    <div class="menu-list">
+      <button class="btn accent" id="vDl">⬇︎ Télécharger les vidéos (connexion nécessaire)</button>
+      <label class="btn ghost file-btn">📁 Ajouter des vidéos depuis l'appareil<input type="file" accept="video/*" multiple id="vPick"></label>
+      ${have.length?`<button class="btn ghost" id="vDel" style="color:var(--red)">Supprimer les vidéos des pas</button>`:""}
+    </div>
+    ${missing.length?`<details style="margin-top:12px"><summary style="cursor:pointer;font-weight:700">Vidéos manquantes (${missing.length})</summary>
+      <p class="muted" style="font-size:13px">Nom de fichier attendu entre parenthèses.</p>
+      <ul style="font-size:14px;padding-left:18px">${missing.map(x=>`<li>${esc(x.n)} <span class="muted">(${x.k}${VIDEO_EXT})</span></li>`).join("")}</ul></details>`:""}
+    <div class="row"><button class="btn" data-close>Fermer</button></div>`);
+  $("#vDl").onclick=downloadAllVideos;
+  $("#vPick").onchange=async e=>{
+    const files=[...e.target.files]; if(!files.length) return;
+    const alias=new Map(); items.forEach(x=>alias.set(x.k,x.k));
+    [...REPERTOIRE,...TAB_ALL].forEach(p=>{ const s=slug(p.n); if(!alias.has(s)) alias.set(s,vkey(p.n,p.v)); });
+    let ok=0; const unknown=[];
+    for(const f of files){
+      const k=alias.get(slug(f.name.replace(/\.[^.]+$/,"")));
+      if(k){ if(await savePasVideo(k,f)) ok++; } else unknown.push(f.name);
+    }
+    rerenderVideoLists(); videosModal();
+    $("#vMsg").innerHTML = `${ok} vidéo(s) ajoutée(s).` + (unknown.length?` <b style="color:var(--red)">Non reconnue(s) : ${unknown.map(esc).join(", ")}</b> — renommez-les comme dans la liste des vidéos manquantes, ou ajoutez-les une par une depuis l'onglet « Les pas » en mode professeur.`:"");
+  };
+  const d=$("#vDel"); if(d) d.onclick=()=>{
+    openModal(`<h3>Supprimer les vidéos des pas ?</h3><p>Les vidéos des pas seront effacées de cet appareil. Les dossiers des élèves et leurs vidéos de création ne sont pas touchés.</p>
+      <div class="row"><button class="btn ghost" data-close>Annuler</button><button class="btn danger" id="vDelOk">Supprimer</button></div>`);
+    $("#vDelOk").onclick=async()=>{ await clearPasVids(); offlineKeys.clear(); closeModal(); rerenderVideoLists(); toast("Vidéos des pas supprimées"); };
+  };
+}
+async function downloadAllVideos(){
+  if(dlRunning) return;
+  if(location.protocol==="file:"){ $("#vMsg").textContent="Le téléchargement marche quand l'appli est ouverte depuis son adresse en ligne (GitHub Pages). Sinon, utilisez « Ajouter des vidéos depuis l'appareil »."; return; }
+  if(!navigator.onLine){ $("#vMsg").textContent="Pas de connexion : connectez l'appareil au wifi puis recommencez."; return; }
+  dlRunning=true; $("#vDl").disabled=true;
+  try{ if(navigator.storage && navigator.storage.persist) await navigator.storage.persist(); }catch(e){}
+  const items=allVideoItems(); let done=0, ok=0, mb=0; const fail=[];
+  for(const x of items){
+    done++;
+    $("#vMsg").textContent=`Téléchargement ${done} / ${items.length} : ${x.n}…`;
+    $("#vBar").style.width=(done/items.length*100)+"%";
+    if(offlineKeys.has(x.k)){ ok++; continue; }
+    try{
+      const r=await fetch(VIDEO_DIR+x.k+VIDEO_EXT,{cache:"no-store"});
+      if(!r.ok) throw 0;
+      const b=await r.blob(); if(!b.size || /text\/html/.test(b.type)) throw 0;
+      if(await savePasVideo(x.k,b)){ ok++; mb+=b.size/1048576; } else { fail.push(x.n); break; }
+    }catch(e){ if(x.v) fail.push(x.n); }
+  }
+  dlRunning=false; rerenderVideoLists(); videosModal();
+  $("#vMsg").innerHTML=`Terminé : ${offlineKeys.size} vidéo(s) disponibles hors connexion${mb>=1?` (${Math.round(mb)} Mo téléchargés)`:""}.`+(fail.length?` <b style="color:var(--red)">Introuvables sur le site : ${fail.map(esc).join(", ")}.</b>`:"");
+}
+async function exportModal(){
+  const p=P(), ks=await groupVideoKeys(p.id), ev=ks.filter(k=>/-passage[12]$/.test(k)), autres=ks.filter(k=>!/-passage[12]$/.test(k));
+  openModal(`<h3>Envoyer le dossier au professeur</h3>
+    <p class="muted" style="margin-top:0">Un seul fichier est créé. Envoyez-le par AirDrop au professeur (ou par mail / OneDrive).</p>
+    <label class="xchk"><input type="checkbox" checked disabled> Le dossier du groupe</label>
+    <label class="xchk"><input type="checkbox" id="xEv" ${ev.length?"checked":"disabled"}> Vidéos de l'évaluation ${ev.length?`(${ev.length})`:"<span class='muted'>(aucune filmée)</span>"}</label>
+    <label class="xchk"><input type="checkbox" id="xAu" ${autres.length?"":"disabled"}> Autres vidéos : pré-évaluation, création ${autres.length?`(${autres.length})`:"<span class='muted'>(aucune)</span>"}</label>
+    <p id="xMsg" class="muted" style="font-size:14px"></p>
+    <div class="row"><button class="btn ghost" data-close>Annuler</button><button class="btn accent" id="xGo">📤 Envoyer</button></div>`);
+  $("#xGo").onclick=async()=>{
+    const keys=[...($("#xEv").checked?ev:[]),...($("#xAu").checked?autres:[])];
+    $("#xGo").disabled=true; $("#xMsg").textContent=keys.length?"Préparation du fichier avec les vidéos…":"Préparation…";
+    try{ await exportFile(keys); }catch(e){ $("#xMsg").textContent="Le fichier n'a pas pu être créé (vidéos trop lourdes ?). Réessayez sans les autres vidéos."; $("#xGo").disabled=false; }
+  };
+}
+async function exportFile(vkeys){
+  vkeys=Array.isArray(vkeys)?vkeys:[];
+  if(vkeys.length){
+    const p=P(); const entries=[{name:"dossier.json",blob:new Blob([JSON.stringify({app:"step4e",version:1,exported:new Date().toISOString(),profile:p})],{type:"application/json"})}];
+    for(const k of vkeys){ const b=await getVid(k); if(b) entries.push({name:`videos/${k}.${vidExt(b)}`,blob:b}); }
+    const zip=await makeZip(entries); const name=`dossier-step_${slug(p.ident.classe||"classe")}_${slug(fullName(p))}.zip`;
+    try{ const file=new File([zip],name,{type:"application/zip"}); if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],title:name}); closeModal(); return; } }catch(err){ if(err&&err.name==="AbortError"){ closeModal(); return; } }
+    const a=document.createElement("a"); a.href=URL.createObjectURL(zip); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);
+    closeModal(); toast("Fichier enregistré"); return;
+  }
+  const p=P(); const data=JSON.stringify({app:"step4e",version:1,exported:new Date().toISOString(),profile:p},null,2);
+  const name=`dossier-step_${slug(p.ident.classe||"classe")}_${slug(fullName(p))}.json`;
+  const blob=new Blob([data],{type:"application/json"});
+  try{
+    const file=new File([blob],name,{type:"application/json"});
+    if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file],title:name}); closeModal(); return; }
+  }catch(err){ if(err && err.name==="AbortError") return; }
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);
+  closeModal(); toast("Fichier enregistré");
+}
+function importFile(){
+  const i=document.createElement("input"); i.type="file"; i.accept=".json,application/json";
+  i.onchange=async()=>{
+    const f=i.files[0]; if(!f) return;
+    try{
+      const d=JSON.parse(await f.text()); const q=d.profile;
+      if(d.app!=="step4e"||!q||!q.ident) throw 0;
+      const base=blankProfile(); const merged=Object.assign(base,q); merged.creation=Object.assign(blankProfile().creation,q.creation||{});
+      if(!merged.id) merged.id=uid();
+      store.profiles[merged.id]=merged; store.current=merged.id; save(); closeModal(); renderAll(); goTab("dossier");
+      toast(`Dossier de ${fullName(merged)} chargé`);
+    }catch(e){ toast("Ce fichier n'est pas un dossier step valide."); }
+  };
+  i.click();
+}
+
+/* ================= DÉMARRAGE ================= */
+(async function init(){
+  load(); await openDB(); await refreshOfflineKeys();
+  if("serviceWorker" in navigator && (location.protocol==="https:"||location.hostname==="localhost")){ try{ navigator.serviceWorker.register("sw.js"); }catch(e){} }
+  try{ const t=sessionStorage.getItem("step4e-tab"); if(t && TABS.some(x=>x[0]===t)) curTab=t; }catch(e){}
+  renderTabs();
+  if(!store.current || !store.profiles[store.current]){
+    store.current = Object.keys(store.profiles)[0]||null;
+  }
+  if(store.current){ renderAll(); goTab(curTab); }
+  else newProfileModal(true);
+})();
+</script>
+</body>
+</html>
